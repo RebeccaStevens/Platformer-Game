@@ -65,6 +65,7 @@ public class Game extends PApplet {
 	 */
 	public void draw() {
 		Scene scene = Scene.getCurrentScene();
+		Time.update();
 		if (scene != null) {
 			scene.update();
 			scene.draw(g);
