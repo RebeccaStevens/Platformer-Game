@@ -1,5 +1,8 @@
 package com.github.RebeccaStevens.scenes;
 
+import com.github.RebeccaStevens.Game;
+import com.github.RebeccaStevens.entities.Player;
+
 import processing.core.PGraphics;
 
 /**
@@ -12,10 +15,14 @@ public class GameScene extends Scene {
 	// colors
 	int backgroundColor = 0xFF64B5F6;
 	
+	// entities
+	Player player;
+	
 	/**
 	 * Create the game scene.
 	 */
 	public GameScene() {
+		player = new Player(125, Game.getGame().sketchHeight() - 150, 50, 100);
 	}
 
 	@Override
@@ -28,6 +35,7 @@ public class GameScene extends Scene {
 
 	@Override
 	public void update() {
+		player.update();
 	}
 
 	@Override
@@ -35,6 +43,7 @@ public class GameScene extends Scene {
 		g.pushStyle();
 		
 		g.background(backgroundColor);
+		player.draw(g);
 		
 		g.popStyle();
 	}
