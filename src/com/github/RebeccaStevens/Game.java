@@ -4,6 +4,7 @@ import com.github.RebeccaStevens.scenes.GameScene;
 import com.github.RebeccaStevens.scenes.MainMenuScene;
 import com.github.RebeccaStevens.scenes.Scene;
 
+import multikey.MultiKeyManager;
 import processing.core.PApplet;
 import processing.core.PGraphics;
 
@@ -54,6 +55,7 @@ public class Game extends PApplet {
 	 */
 	public void setup() {
 		surface.setTitle(title);
+		new MultiKeyManager(this);
 		mainMenuScene = new MainMenuScene();
 		Scene.setCurrentScene(mainMenuScene);
 	}

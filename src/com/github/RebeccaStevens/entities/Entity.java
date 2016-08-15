@@ -1,5 +1,7 @@
 package com.github.RebeccaStevens.entities;
 
+import com.github.RebeccaStevens.Time;
+
 import processing.core.PGraphics;
 import processing.core.PVector;
 
@@ -36,5 +38,15 @@ public abstract class Entity {
 	 * @param g
 	 */
 	abstract public void draw(PGraphics g);
+	
+	/**
+	 * Move the entity.
+	 * Changes its position based on its velocity.
+	 */
+	protected void move() {
+		float time = Time.getTimeStep();
+		this.position.x += time * this.velocity.x;
+		this.position.y += time * this.velocity.y;
+	}
 
 }
