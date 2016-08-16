@@ -16,11 +16,11 @@ import processing.core.PGraphics;
 public class GameScene extends Scene {
 	
 	// colors
-	int backgroundColor = 0xFF64B5F6;
+	private int backgroundColor = 0xFF64B5F6;
 	
 	// entities
-	Player player;
-	ArrayList<Platform> platforms;
+	private Player player;
+	private ArrayList<Platform> platforms;
 	
 	/**
 	 * Create the game scene.
