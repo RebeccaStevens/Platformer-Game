@@ -2,11 +2,8 @@ package com.github.RebeccaStevens.entities;
 
 import multikey.Key;
 import processing.core.PConstants;
-import processing.core.PGraphics;
 
 public class Player extends Entity {
-
-	private int color = 0xFFFF0000;
 	
 	private Key moveLeft1;
 	private Key moveLeft2;
@@ -29,7 +26,7 @@ public class Player extends Entity {
 	 * @param height - The height of the player
 	 */
 	public Player(float x, float y, float width, float height) {
-		super(x, y, width, height);
+		super(x, y, width, height, 0xFFFF0000);
 		moveLeft1 = new Key(PConstants.LEFT);
 		moveLeft2 = new Key('A');
 		moveRight1 = new Key(PConstants.RIGHT);
@@ -49,21 +46,6 @@ public class Player extends Entity {
 			this.velocity.x = walkSpeed * dx;
 		}
 		this.move();
-	}
-
-	@Override
-	public void draw(PGraphics g) {
-		g.pushStyle();
-		g.pushMatrix();
-		
-		g.rectMode = PConstants.CENTER;
-		g.translate(this.position.x, this.position.y);
-		g.noStroke();
-		g.fill(this.color);
-		g.rect(0, 0, this.width, this.height);
-		
-		g.popMatrix();
-		g.popStyle();
 	}
 
 }

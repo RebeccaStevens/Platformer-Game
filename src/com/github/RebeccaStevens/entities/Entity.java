@@ -2,6 +2,7 @@ package com.github.RebeccaStevens.entities;
 
 import com.github.RebeccaStevens.Time;
 
+import processing.core.PConstants;
 import processing.core.PGraphics;
 import processing.core.PVector;
 
@@ -11,6 +12,7 @@ public abstract class Entity {
 	protected PVector velocity;
 	protected float width;
 	protected float height;
+	protected int color;
 	
 	/**
 	 * Create the entity.
@@ -20,11 +22,12 @@ public abstract class Entity {
 	 * @param width - The width of the entity
 	 * @param height - The height of the entity
 	 */
-	public Entity(float x, float y, float width, float height) {
+	public Entity(float x, float y, float width, float height, int color) {
 		this.position = new PVector(x, y);
 		this.velocity = new PVector();
 		this.width = width;
 		this.height = height;
+		this.color = color;
 	}
 	
 	/**
@@ -37,7 +40,19 @@ public abstract class Entity {
 	 * 
 	 * @param g
 	 */
-	abstract public void draw(PGraphics g);
+	public void draw(PGraphics g) {
+		g.pushStyle();
+		g.pushMatrix();
+		
+		g.rectMode = PConstants.CENTER;
+		g.translate(this.position.x, this.position.y);
+		g.noStroke();
+		g.fill(this.color);
+		g.rect(0, 0, this.width, this.height);
+		
+		g.popMatrix();
+		g.popStyle();
+	}
 	
 	/**
 	 * Move the entity.

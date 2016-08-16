@@ -30,8 +30,8 @@ public class GameScene extends Scene {
 		
 		player = new Player(125, sketchHeight - 150, 50, 100);
 		platforms = new ArrayList<Platform>();
-		platforms.add(new Platform(0, sketchHeight - 50, 1200, 50));
-		platforms.add(new Platform(600, sketchHeight - 125, 200, 75));
+		platforms.add(new Platform(600, sketchHeight - 25, 1200, 50));
+		platforms.add(new Platform(700, sketchHeight - 75, 200, 75));
 	}
 
 	@Override
