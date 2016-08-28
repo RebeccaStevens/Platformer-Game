@@ -3,7 +3,6 @@ package com.github.RebeccaStevens.entities;
 import java.security.InvalidParameterException;
 
 import com.github.RebeccaStevens.Drawable;
-import com.github.RebeccaStevens.Window;
 import com.github.RebeccaStevens.levels.Level;
 
 import processing.core.PConstants;

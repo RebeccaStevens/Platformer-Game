@@ -36,7 +36,6 @@ public abstract class Level implements Updatable, Drawable {
 		return zoom * gameUnits * gameWidth / gridWidth;
 	}
 	
-
 	/**
 	 * Convert game units (for y position) to pixels.
 	 * 
@@ -45,6 +44,26 @@ public abstract class Level implements Updatable, Drawable {
 	 */
 	public float convertGridUnitsYToPixels(float gameUnits) {
 		return gameHeight - (zoom * gameUnits * gameHeight / gridHeight);
+	}
+	
+	/**
+	 * Convert game units (for x movement) to pixels.
+	 * 
+	 * @param gameUnits
+	 * @return
+	 */
+	public float convertGridUnitsVelocityXToPixels(float gameUnits) {
+		return zoom * gameUnits * gameWidth / gridWidth;
+	}
+	
+	/**
+	 * Convert game units (for y movement) to pixels.
+	 * 
+	 * @param gameUnits
+	 * @return
+	 */
+	public float convertGridUnitsVelocityYToPixels(float gameUnits) {
+		return -(zoom * gameUnits * gameHeight / gridHeight);
 	}
 
 	/**

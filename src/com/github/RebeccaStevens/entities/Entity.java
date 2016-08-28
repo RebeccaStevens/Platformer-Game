@@ -37,8 +37,8 @@ public abstract class Entity implements Updatable{
 	 */
 	protected void move() {
 		float time = Window.getWindow().getTime().getTimeStep();
-		this.position.x += time * level.convertGridUnitsWidthToPixels(this.velocity.x);
-		this.position.y += time * level.convertGridUnitsWidthToPixels(this.velocity.y);
+		this.position.x += time * level.convertGridUnitsVelocityXToPixels(this.velocity.x);
+		this.position.y += time * level.convertGridUnitsVelocityYToPixels(this.velocity.y);
 		this.constrain();
 	}
 
