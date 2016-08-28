@@ -14,12 +14,12 @@ import processing.core.PGraphics;
  * @author Rebecca Stevens
  *
  */
-public class Game extends PApplet {
+public class Window extends PApplet {
 	
 	/**
 	 * The main Game Object.
 	 */
-	private static Game me;
+	private static Window me;
 	
 	/**
 	 * The title of the game.
@@ -49,8 +49,8 @@ public class Game extends PApplet {
 	/**
 	 * Construct a the Game Object.
 	 */
-	public Game() {
-		Game.me = this;
+	public Window() {
+		Window.me = this;
 		settings = new Settings();
 		time = new Time();
 	}
@@ -87,11 +87,11 @@ public class Game extends PApplet {
 	}
 	
 	/**
-	 * Get the Game Object.
+	 * Get the window.
 	 * 
 	 * @return
 	 */
-	public static Game getGame() {
+	public static Window getWindow() {
 		return me;
 	}
 	
@@ -180,7 +180,7 @@ public class Game extends PApplet {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		PApplet.main(Game.class.getName());
+		PApplet.main(Window.class.getName());
 	}
 
 }

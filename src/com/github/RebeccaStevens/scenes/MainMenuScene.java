@@ -2,7 +2,7 @@ package com.github.RebeccaStevens.scenes;
 
 import java.awt.Font;
 
-import com.github.RebeccaStevens.Game;
+import com.github.RebeccaStevens.Window;
 
 import controlP5.ControlEvent;
 import controlP5.ControlListener;
@@ -35,13 +35,13 @@ public class MainMenuScene extends Scene {
 	 * Create the menu scene.
 	 */
 	public MainMenuScene() {
-		Game game = Game.getGame();
+		Window window = Window.getWindow();
 
-		cp5 = new ControlP5(game);
+		cp5 = new ControlP5(window);
 		cp5.setAutoDraw(false);
 		
-		int xOffset = (game.getWidth() - buttonWidth) / 2;
-		int yOffset = game.getHeight() * 2 / 5;
+		int xOffset = (window.getWidth() - buttonWidth) / 2;
+		int yOffset = window.getHeight() * 2 / 5;
 		cp5.addButton("playButton")
 			.setLabel("Play")
 			.setPosition(xOffset, yOffset)
@@ -50,8 +50,8 @@ public class MainMenuScene extends Scene {
 			.addListener(new ControlListener() {
 				@Override
 				public void controlEvent(ControlEvent e) {
-					Game game = Game.getGame();
-					Scene.setCurrentScene(game.createGameScene());
+					Window window = Window.getWindow();
+					Scene.setCurrentScene(window.createGameScene());
 				}
 			});
 		
@@ -77,7 +77,7 @@ public class MainMenuScene extends Scene {
 			.addListener(new ControlListener() {
 				@Override
 				public void controlEvent(ControlEvent e) {
-					Game.getGame().exit();
+					Window.getWindow().exit();
 				}
 			});
 	}
@@ -104,7 +104,7 @@ public class MainMenuScene extends Scene {
 		g.fill(titleColor);
 		g.textAlign(PConstants.CENTER, PConstants.CENTER);
 		g.textSize(Math.min(g.width / 15, g.height / 10));
-		g.text(Game.getGame().getTitle(), g.width / 2, g.height / 5);
+		g.text(Window.getWindow().getTitle(), g.width / 2, g.height / 5);
 		
 		cp5.controlWindow.draw(g);
 		

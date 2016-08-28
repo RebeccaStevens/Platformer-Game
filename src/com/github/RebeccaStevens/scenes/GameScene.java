@@ -1,6 +1,6 @@
 package com.github.RebeccaStevens.scenes;
 
-import com.github.RebeccaStevens.Game;
+import com.github.RebeccaStevens.Window;
 import com.github.RebeccaStevens.levels.Level;
 import com.github.RebeccaStevens.levels.Level1;
 
@@ -62,11 +62,11 @@ public class GameScene extends Scene {
 	 * Create the game graphics.
 	 */
 	private void createGameGraphics() {
-		Game game = Game.getGame();
-		float aspectRatio = game.getSettings().getAspectRation();
+		Window window = Window.getWindow();
+		float aspectRatio = window.getSettings().getAspectRation();
 		
-		int windowWidth = game.getWidth();
-		int windowHeight = game.getHeight();
+		int windowWidth = window.getWidth();
+		int windowHeight = window.getHeight();
 		int gameWidth;
 		int gameHeight;
 		
@@ -78,7 +78,7 @@ public class GameScene extends Scene {
 			gameHeight = windowHeight;
 		}
 
-		gameGraphics = game.createGraphics(gameWidth, gameHeight);
+		gameGraphics = window.createGraphics(gameWidth, gameHeight);
 	}
 
 }

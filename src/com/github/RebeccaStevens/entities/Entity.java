@@ -1,7 +1,7 @@
 package com.github.RebeccaStevens.entities;
 
 import com.github.RebeccaStevens.Drawable;
-import com.github.RebeccaStevens.Game;
+import com.github.RebeccaStevens.Window;
 import com.github.RebeccaStevens.Updatable;
 
 import processing.core.PConstants;
@@ -64,7 +64,7 @@ public abstract class Entity implements Updatable, Drawable {
 	 * Changes its position based on its velocity.
 	 */
 	protected void move() {
-		float time = Game.getGame().getTime().getTimeStep();
+		float time = Window.getWindow().getTime().getTimeStep();
 		this.position.x += time * this.velocity.x;
 		this.position.y += time * this.velocity.y;
 	}
