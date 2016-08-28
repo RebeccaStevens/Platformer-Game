@@ -1,12 +1,14 @@
 package com.github.RebeccaStevens.entities;
 
+import com.github.RebeccaStevens.Drawable;
 import com.github.RebeccaStevens.Time;
+import com.github.RebeccaStevens.Updatable;
 
 import processing.core.PConstants;
 import processing.core.PGraphics;
 import processing.core.PVector;
 
-public abstract class Entity {
+public abstract class Entity implements Updatable, Drawable {
 	
 	protected PVector position;
 	protected PVector velocity;
@@ -30,11 +32,6 @@ public abstract class Entity {
 		this.height = height;
 		this.fillColor = fillColor;
 	}
-	
-	/**
-	 * Update the entity. I.e. Move it 
-	 */
-	abstract public void update();
 	
 	/**
 	 * Draw the entity.

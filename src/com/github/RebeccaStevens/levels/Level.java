@@ -1,13 +1,8 @@
 package com.github.RebeccaStevens.levels;
 
-import processing.core.PGraphics;
+import com.github.RebeccaStevens.Drawable;
+import com.github.RebeccaStevens.Updatable;
 
-public abstract class Level {
-
-	
-	public abstract void update();
-
-	
-	public abstract void draw(PGraphics g);
+public abstract class Level implements Updatable, Drawable {
 
 }

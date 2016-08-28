@@ -1,6 +1,7 @@
 package com.github.RebeccaStevens.scenes;
 
-import processing.core.PGraphics;
+import com.github.RebeccaStevens.Drawable;
+import com.github.RebeccaStevens.Updatable;
 
 /**
  * Scenes are used to display things on the screen.
@@ -8,7 +9,7 @@ import processing.core.PGraphics;
  *
  * @author Rebecca Stevens
  */
-public abstract class Scene {
+public abstract class Scene implements Updatable, Drawable {
 	
 	/**
 	 * The scene currently being displayed.
@@ -24,16 +25,6 @@ public abstract class Scene {
 	 * Leave the scene.
 	 */
 	protected abstract void leave();
-	
-	/**
-	 * Update everything in the scene.
-	 */
-	public abstract void update();
-	
-	/**
-	 * Draw everything in the scene.
-	 */
-	public abstract void draw(PGraphics g);
 	
 	/**
 	 * Get the current scene.
