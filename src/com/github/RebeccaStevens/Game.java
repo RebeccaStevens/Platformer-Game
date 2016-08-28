@@ -22,6 +22,21 @@ public class Game extends PApplet {
 	private static Game me;
 	
 	/**
+	 * The title of the game.
+	 */
+	private final String title = "Platformer Game";
+
+	/**
+	 * The game settings
+	 */
+	private final Settings settings;
+
+	/**
+	 * Manages the game time.
+	 */
+	private final Time time;
+
+	/**
 	 * The menu scene.
 	 */
 	private MainMenuScene mainMenuScene;
@@ -30,22 +45,13 @@ public class Game extends PApplet {
 	 * The game scene.
 	 */
 	private GameScene gameScene;
-
-	/**
-	 * The title of the game.
-	 */
-	private final String title = "Platformer Game";
 	
-	/**
-	 * Manages the game time.
-	 */
-	private final Time time;
-
 	/**
 	 * Construct a the Game Object.
 	 */
 	public Game() {
 		Game.me = this;
+		settings = new Settings();
 		time = new Time();
 	}
 	
@@ -105,6 +111,15 @@ public class Game extends PApplet {
 	 */
 	public PGraphics getGraphics() {
 		return g;
+	}
+	
+	/**
+	 * Get the game settings.
+	 * 
+	 * @return
+	 */
+	public Settings getSettings() {
+		return settings;
 	}
 	
 	/**
