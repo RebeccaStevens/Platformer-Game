@@ -28,7 +28,7 @@ public abstract class Level implements Updatable, Drawable {
 	 * @param gameUnits
 	 * @return
 	 */
-	protected float convertGridUnitXToPixels(float gameUnits) {
+	protected float convertGridUnitsXToPixels(float gameUnits) {
 		return zoom * gameUnits * gameWidth / gridWidth;
 	}
 	
@@ -39,7 +39,7 @@ public abstract class Level implements Updatable, Drawable {
 	 * @param gameUnits
 	 * @return
 	 */
-	protected float convertGridUnitYToPixels(float gameUnits) {
+	protected float convertGridUnitsYToPixels(float gameUnits) {
 		return gameHeight - (zoom * gameUnits * gameHeight / gridHeight);
 	}
 
@@ -49,7 +49,7 @@ public abstract class Level implements Updatable, Drawable {
 	 * @param gameUnits
 	 * @return
 	 */
-	protected float convertGridUnitWidthToPixels(float gameUnits) {
+	protected float convertGridUnitsWidthToPixels(float gameUnits) {
 		return zoom * gameUnits * gameWidth / gridWidth;
 	}
 
@@ -59,7 +59,7 @@ public abstract class Level implements Updatable, Drawable {
 	 * @param gameUnits
 	 * @return
 	 */
-	protected float convertGridUnitHeightToPixels(float gameUnits) {
+	protected float convertGridUnitsHeightToPixels(float gameUnits) {
 		return zoom * gameUnits * gameHeight / gridHeight;
 	}
 	
