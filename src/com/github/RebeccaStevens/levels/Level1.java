@@ -41,6 +41,7 @@ public class Level1 extends Level {
 	@Override
 	public void draw(PGraphics g) {
 		g.pushStyle();
+		g.pushMatrix();
 		
 		applyCamera(g);
 		g.background(backgroundColor);
@@ -50,6 +51,7 @@ public class Level1 extends Level {
 		}
 		player.draw(g);
 		
+		g.popMatrix();
 		g.popStyle();
 	}
 }

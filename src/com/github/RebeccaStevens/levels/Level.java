@@ -78,13 +78,17 @@ public abstract class Level implements Updatable, Drawable {
 		g.stroke(0x88000000); // black transparent lines	
 		g.strokeWeight(1);
 		
+		float xOffset = (camera.getX() * gridWidth / g.width) % 1;
+		float yOffset = (camera.getY() * gridHeight / g.height) % 1;
+		
 		// draw the vertical lines
 		for (int i = 0; i < gridWidth / zoom + 1; i++) {
-			g.line(i * zoom * g.width / gridWidth, 0, i * zoom * g.width / gridWidth, g.height);
+			g.line((i - xOffset) * zoom * g.width / gridWidth, 0, (i - xOffset) * zoom * g.width / gridWidth, g.height);
 		}
+		
 		// draw the horizontal lines
 		for (int i = 0; i < gridHeight / zoom + 1; i++) {
-			g.line(0, g.height - (i * zoom * g.height / gridHeight), g.width, g.height - (i * zoom * g.height / gridHeight));
+			g.line(0, g.height - ((i + yOffset) * zoom * g.height / gridHeight), g.width, g.height - ((i + yOffset) * zoom * g.height / gridHeight));
 		}
 		
 		g.popStyle();
