@@ -1,7 +1,6 @@
 package com.github.RebeccaStevens;
 
 import com.github.RebeccaStevens.entities.Entity;
-import com.sun.xml.internal.ws.dump.LoggingDumpTube.Position;
 
 import processing.core.PApplet;
 import processing.core.PVector;

@@ -5,7 +5,6 @@ import java.security.InvalidParameterException;
 import com.github.RebeccaStevens.Camera;
 import com.github.RebeccaStevens.Drawable;
 import com.github.RebeccaStevens.Updatable;
-import com.github.RebeccaStevens.entities.Platform;
 
 import processing.core.PGraphics;
 
