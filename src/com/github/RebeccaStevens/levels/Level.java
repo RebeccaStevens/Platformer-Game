@@ -7,15 +7,36 @@ import processing.core.PGraphics;
 
 public abstract class Level implements Updatable, Drawable {
 	
-	private final int gridHeight = 12;
-	private int gridWidth;
+	private final int gridWidth = 16;
+	private int gridHeight;
 	private int gameWidth;
 	private int gameHeight;
 	
 	public Level(int gameWidth, int gameHeight) {
 		this.gameWidth = gameWidth;
 		this.gameHeight = gameHeight;
-		updateGridWidth();
+		updateGridHeight();
+	}
+
+	/**
+	 * Convert game units (for x position) to pixels.
+	 * 
+	 * @param gameUnits
+	 * @return
+	 */
+	protected float convertGridUnitXToPixels(float gameUnits) {
+		return gameUnits * gameWidth / gridWidth;
+	}
+	
+
+	/**
+	 * Convert game units (for y position) to pixels.
+	 * 
+	 * @param gameUnits
+	 * @return
+	 */
+	protected float convertGridUnitYToPixels(float gameUnits) {
+		return gameHeight - (gameUnits * gameHeight / gridHeight);
 	}
 
 	/**
@@ -61,7 +82,7 @@ public abstract class Level implements Updatable, Drawable {
 		g.popStyle();
 	}
 
-	private void updateGridWidth() {
-		gridWidth = (int) (gridHeight * ((float)(gameWidth)) / gameHeight);
+	private void updateGridHeight() {
+		gridHeight = (int) (gridWidth * ((float)(gameHeight)) / gameWidth);
 	}
 }
