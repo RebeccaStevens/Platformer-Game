@@ -1,69 +1,77 @@
 package com.github.RebeccaStevens;
 
-public final class Time {
-	
-	/**
-	 * The Time class does not need a public constructor.
-	 */
-	private Time() {}
+/**
+ * Manages the game's in-game time.
+ *
+ * @author Rebecca Stevens
+ */
+public final class Time implements Updatable {
 	
 	/**
 	 * The timeFactor is the relation between the timeFrame and the timeStep.
 	 * timeFrame * timeFactor = timeStep
 	 */
-	private static float timeFactor = 1F;
+	private float timeFactor = 1F;
 	
 	/**
 	 * The timeFrame is the amount of actual time that has passed since the last frame.
 	 */
-	private static float timeFrame = 0F;
+	private float timeFrame = 0F;
 	
 	/**
 	 * The timeStep is the amount of in game time that has passed since the last frame.
 	 */
-	private static float timeStep = 0F;
+	private float timeStep = 0F;
 	
 	/**
 	 * The time in milliseconds. Used to calculate timeFrame and timeStep
 	 */
-	private static long timeStamp = 0L;
+	private long timeStamp = 0L;
 	
 	/**
+	 * The amount of in-game time that has passed since the last frame.
+	 * 
 	 * @return The timeStep 
 	 */
-	public static float getTimeStep() {
-		return Time.timeStep;
+	public float getTimeStep() {
+		return timeStep;
 	}
 
 	/**
+	 * The amount of actual time that has passed since the last frame.
+	 * 
 	 * @return The timeFrame 
 	 */
-	public static float getTimeFrame() {
-		return Time.timeFrame;
+	public float getTimeFrame() {
+		return timeFrame;
 	}
 
 	/**
+	 * The rate at which in-game time passes relative to actual time.
+	 * 
 	 * @return the timeFactor
 	 */
-	public static float getTimeFactor() {
-		return Time.timeFactor;
+	public float getTimeFactor() {
+		return timeFactor;
 	}
 
 	/**
+	 * Set the rate at which in-game time passes relative to actual time.
+	 * 
 	 * @param timeFactor
 	 */
-	public static void setTimeFactor(float timeFactor) {
-		Time.timeFactor = timeFactor;
+	public void setTimeFactor(float timeFactor) {
+		this.timeFactor = timeFactor;
 	}
 	
 	/**
 	 * Update the values of timeFrame and timeStep.
 	 * This method should be called once every frame.
 	 */
-	public static void update() {
+	public void update() {
 		long newTimeStamp = System.currentTimeMillis();
-		Time.timeFrame = (newTimeStamp - Time.timeStamp) / 1000F;
-		Time.timeStep = Time.timeFactor * Time.timeFrame;
-		Time.timeStamp = newTimeStamp;
+		timeFrame = (newTimeStamp - timeStamp) / 1000F;
+		timeStep = timeFactor * timeFrame;
+		timeStamp = newTimeStamp;
 	}
 }
