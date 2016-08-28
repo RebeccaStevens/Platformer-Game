@@ -80,7 +80,7 @@ public abstract class Level implements Updatable, Drawable {
 		}
 		// draw the horizontal lines
 		for (int i = 0; i < gridHeight / zoom + 1; i++) {
-			g.line(0, i * zoom * g.height / gridHeight, g.width, i * zoom * g.height / gridHeight);
+			g.line(0, g.height - (i * zoom * g.height / gridHeight), g.width, g.height - (i * zoom * g.height / gridHeight));
 		}
 		
 		g.popStyle();
