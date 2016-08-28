@@ -23,10 +23,17 @@ public abstract class Entity implements Updatable, Drawable {
 	 * @param y - The starting y position of the entity
 	 * @param width - The width of the entity
 	 * @param height - The height of the entity
+	 * @param mode 
 	 * @param fillColor - The fill color of the entity
 	 */
-	public Entity(float x, float y, float width, float height, int fillColor) {
-		this.position = new PVector(x, y);
+	public Entity(float x, float y, float width, float height, int mode, int fillColor) {
+		if (mode == PConstants.CENTER) {
+			this.position = new PVector(x, y);
+		} else if (mode == PConstants.CORNER) {
+			this.position = new PVector(x + width / 2, y + height / 2);
+		} else {
+			new RuntimeException("unsupported entity mode");
+		}
 		this.velocity = new PVector();
 		this.width = width;
 		this.height = height;

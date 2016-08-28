@@ -28,7 +28,7 @@ public class Player extends Entity {
 	 * @param height - The height of the player
 	 */
 	public Player(float x, float y, float width, float height) {
-		super(x, y, width, height, fillColor);
+		super(x, y, width, height, PConstants.CENTER, fillColor);
 		moveLeft1 = new Key(PConstants.LEFT);
 		moveLeft2 = new Key('A');
 		moveRight1 = new Key(PConstants.RIGHT);

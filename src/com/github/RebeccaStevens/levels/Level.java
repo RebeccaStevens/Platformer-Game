@@ -19,12 +19,22 @@ public abstract class Level implements Updatable, Drawable {
 	}
 
 	/**
-	 * Convert the game units to pixels.
+	 * Convert game units (for width) to pixels.
 	 * 
 	 * @param gameUnits
 	 * @return
 	 */
-	protected float convertToPixels(float gameUnits) {
+	protected float convertGridUnitWidthToPixels(float gameUnits) {
+		return gameUnits * gameWidth / gridWidth;
+	}
+
+	/**
+	 * Convert game units (for height) to pixels.
+	 * 
+	 * @param gameUnits
+	 * @return
+	 */
+	protected float convertGridUnitHeightToPixels(float gameUnits) {
 		return gameUnits * gameHeight / gridHeight;
 	}
 	
@@ -52,6 +62,6 @@ public abstract class Level implements Updatable, Drawable {
 	}
 
 	private void updateGridWidth() {
-		gridWidth = (int) (gridHeight * ((float)(gameWidth) / gameHeight));
+		gridWidth = (int) (gridHeight * ((float)(gameWidth)) / gameHeight);
 	}
 }
