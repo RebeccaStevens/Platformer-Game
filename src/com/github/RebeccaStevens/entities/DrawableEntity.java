@@ -65,6 +65,7 @@ public abstract class DrawableEntity extends Entity implements Drawable {
 		float time = Window.getWindow().getTime().getTimeStep();
 		this.position.x += time * this.velocity.x;
 		this.position.y += time * this.velocity.y;
+		this.constrain();
 	}
 
 	/**

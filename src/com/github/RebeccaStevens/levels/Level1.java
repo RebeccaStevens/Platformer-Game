@@ -29,6 +29,7 @@ public class Level1 extends Level {
 		camera.setFocus(player);
 		camera.setMinX(gameWidth / 2);
 		camera.setMaxY(gameHeight / 2);
+		player.setMinX(player.getWidth() / 2);
 	}
 
 	@Override
