@@ -1,5 +1,6 @@
 package com.github.RebeccaStevens.scenes;
 
+import com.github.RebeccaStevens.Game;
 import com.github.RebeccaStevens.levels.Level;
 import com.github.RebeccaStevens.levels.Level1;
 
@@ -11,7 +12,15 @@ import processing.core.PGraphics;
  * @author Rebecca Stevens
  */
 public class GameScene extends Scene {
+
+	/**
+	 * The game's graphic object.
+	 */
+	private PGraphics gameGraphics;
 	
+	/**
+	 * The active level.
+	 */
 	private Level level;
 	
 	/**
@@ -19,6 +28,7 @@ public class GameScene extends Scene {
 	 */
 	public GameScene() {
 		level = new Level1();
+		createGameGraphics();
 	}
 
 	@Override
@@ -38,9 +48,36 @@ public class GameScene extends Scene {
 
 	@Override
 	public void draw(PGraphics g) {
+		g.background(0);	// create black bars around the game if needed. 
 		if (level != null) {
-			level.draw(g);
+			gameGraphics.beginDraw();
+			level.draw(gameGraphics);
+			gameGraphics.endDraw();
+			g.image(gameGraphics, (g.width - gameGraphics.width) / 2, (g.height - gameGraphics.height) / 2);
 		}
+	}
+
+	/**
+	 * Create the game graphics.
+	 */
+	private void createGameGraphics() {
+		Game game = Game.getGame();
+		float aspectRatio = game.getSettings().getAspectRation();
+		
+		int windowWidth = game.getWidth();
+		int windowHeight = game.getHeight();
+		int gameWidth;
+		int gameHeight;
+		
+		if (((float)windowWidth) / windowHeight <= aspectRatio) {
+			gameWidth = windowWidth;
+			gameHeight = (int) (windowWidth / aspectRatio);
+		} else {
+			gameWidth = (int) (windowHeight * aspectRatio);
+			gameHeight = windowHeight;
+		}
+
+		gameGraphics = game.createGraphics(gameWidth, gameHeight);
 	}
 
 }
