@@ -56,17 +56,6 @@ public abstract class DrawableEntity extends Entity implements Drawable {
 		g.popMatrix();
 		g.popStyle();
 	}
-	
-	/**
-	 * Move the entity.
-	 * Changes its position based on its velocity.
-	 */
-	protected void move() {
-		float time = Window.getWindow().getTime().getTimeStep();
-		this.position.x += time * this.velocity.x;
-		this.position.y += time * this.velocity.y;
-		this.constrain();
-	}
 
 	/**
 	 * This entity's x position.

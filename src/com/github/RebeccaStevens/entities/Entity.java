@@ -29,6 +29,17 @@ public abstract class Entity implements Updatable{
 		this.position = new PVector(x, y);
 		this.velocity = new PVector();
 	}
+	
+	/**
+	 * Move the entity.
+	 * Changes its position based on its velocity.
+	 */
+	protected void move() {
+		float time = Window.getWindow().getTime().getTimeStep();
+		this.position.x += time * level.convertGridUnitsWidthToPixels(this.velocity.x);
+		this.position.y += time * level.convertGridUnitsWidthToPixels(this.velocity.y);
+		this.constrain();
+	}
 
 	/**
 	 * Set the min x position of the camera.
