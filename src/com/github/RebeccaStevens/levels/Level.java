@@ -2,8 +2,10 @@ package com.github.RebeccaStevens.levels;
 
 import java.security.InvalidParameterException;
 
+import com.github.RebeccaStevens.Camera;
 import com.github.RebeccaStevens.Drawable;
 import com.github.RebeccaStevens.Updatable;
+import com.github.RebeccaStevens.entities.Platform;
 
 import processing.core.PGraphics;
 
@@ -16,7 +18,10 @@ public abstract class Level implements Updatable, Drawable {
 	
 	private float zoom = 1F;
 	
+	protected final Camera camera;
+	
 	public Level(int gameWidth, int gameHeight) {
+		this.camera = new Camera();
 		this.gameWidth = gameWidth;
 		this.gameHeight = gameHeight;
 		updateGridHeight();
@@ -84,6 +89,15 @@ public abstract class Level implements Updatable, Drawable {
 		}
 		
 		g.popStyle();
+	}
+	
+	/**
+	 * Apply the camera offset.
+	 * 
+	 * @param g
+	 */
+	protected void applyCamera(PGraphics g) {
+		g.translate(g.width / 2 - camera.getX(), g.height / 2 - camera.getY());
 	}
 
 	private void updateGridHeight() {

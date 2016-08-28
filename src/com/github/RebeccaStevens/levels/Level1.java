@@ -25,6 +25,8 @@ public class Level1 extends Level {
 		platforms = new ArrayList<Platform>();
 		platforms.add(new Platform(convertGridUnitsXToPixels(0F), convertGridUnitsYToPixels(1F), convertGridUnitsWidthToPixels(18F), convertGridUnitsHeightToPixels(1F)));
 		platforms.add(new Platform(convertGridUnitsXToPixels(10F), convertGridUnitsYToPixels(2F), convertGridUnitsWidthToPixels(4F), convertGridUnitsHeightToPixels(1F)));
+		
+		camera.setFocus(player);
 	}
 
 	@Override
@@ -33,12 +35,14 @@ public class Level1 extends Level {
 			p.update();
 		}
 		player.update();
+		camera.update();
 	}
 
 	@Override
 	public void draw(PGraphics g) {
 		g.pushStyle();
 		
+		applyCamera(g);
 		g.background(backgroundColor);
 		
 		for (Platform p : platforms) {

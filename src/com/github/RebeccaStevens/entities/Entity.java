@@ -1,8 +1,8 @@
 package com.github.RebeccaStevens.entities;
 
 import com.github.RebeccaStevens.Drawable;
-import com.github.RebeccaStevens.Window;
 import com.github.RebeccaStevens.Updatable;
+import com.github.RebeccaStevens.Window;
 
 import processing.core.PConstants;
 import processing.core.PGraphics;
@@ -10,8 +10,8 @@ import processing.core.PVector;
 
 public abstract class Entity implements Updatable, Drawable {
 	
-	protected PVector position;
-	protected PVector velocity;
+	protected final PVector position;
+	protected final PVector velocity;
 	protected float width;
 	protected float height;
 	protected int fillColor;
@@ -67,6 +67,24 @@ public abstract class Entity implements Updatable, Drawable {
 		float time = Window.getWindow().getTime().getTimeStep();
 		this.position.x += time * this.velocity.x;
 		this.position.y += time * this.velocity.y;
+	}
+
+	/**
+	 * This entity's x position.
+	 * 
+	 * @return
+	 */
+	public float getX() {
+		return position.x;
+	}
+
+	/**
+	 * This entity's y position.
+	 * 
+	 * @return
+	 */
+	public float getY() {
+		return position.y;
 	}
 	
 	/**
