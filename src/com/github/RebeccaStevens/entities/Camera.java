@@ -1,7 +1,4 @@
-package com.github.RebeccaStevens;
-
-import com.github.RebeccaStevens.entities.DrawableEntity;
-import com.github.RebeccaStevens.entities.Entity;
+package com.github.RebeccaStevens.entities;
 
 import processing.core.PVector;
 

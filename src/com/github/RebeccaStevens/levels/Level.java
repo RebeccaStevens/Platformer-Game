@@ -2,9 +2,9 @@ package com.github.RebeccaStevens.levels;
 
 import java.security.InvalidParameterException;
 
-import com.github.RebeccaStevens.Camera;
 import com.github.RebeccaStevens.Drawable;
 import com.github.RebeccaStevens.Updatable;
+import com.github.RebeccaStevens.entities.Camera;
 
 import processing.core.PGraphics;
 
