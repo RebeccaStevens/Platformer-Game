@@ -1,10 +1,7 @@
 package com.github.RebeccaStevens.scenes;
 
-import java.util.ArrayList;
-
-import com.github.RebeccaStevens.Game;
-import com.github.RebeccaStevens.entities.Platform;
-import com.github.RebeccaStevens.entities.Player;
+import com.github.RebeccaStevens.levels.Level;
+import com.github.RebeccaStevens.levels.Level1;
 
 import processing.core.PGraphics;
 
@@ -15,23 +12,13 @@ import processing.core.PGraphics;
  */
 public class GameScene extends Scene {
 	
-	// colors
-	private int backgroundColor = 0xFF64B5F6;
-	
-	// entities
-	private Player player;
-	private ArrayList<Platform> platforms;
+	private Level level;
 	
 	/**
 	 * Create the game scene.
 	 */
 	public GameScene() {
-		float sketchHeight = Game.getGame().sketchHeight();
-		
-		player = new Player(125, sketchHeight - 150, 50, 100);
-		platforms = new ArrayList<Platform>();
-		platforms.add(new Platform(600, sketchHeight - 25, 1200, 50));
-		platforms.add(new Platform(700, sketchHeight - 75, 200, 75));
+		level = new Level1();
 	}
 
 	@Override
@@ -44,24 +31,16 @@ public class GameScene extends Scene {
 
 	@Override
 	public void update() {
-		for (Platform p : platforms) {
-			p.update();
+		if (level != null) {
+			level.update();
 		}
-		player.update();
 	}
 
 	@Override
 	public void draw(PGraphics g) {
-		g.pushStyle();
-		
-		g.background(backgroundColor);
-		
-		for (Platform p : platforms) {
-			p.draw(g);
+		if (level != null) {
+			level.draw(g);
 		}
-		player.draw(g);
-		
-		g.popStyle();
 	}
 
 }
