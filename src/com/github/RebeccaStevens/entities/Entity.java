@@ -12,7 +12,7 @@ public abstract class Entity {
 	protected PVector velocity;
 	protected float width;
 	protected float height;
-	protected int color;
+	protected int fillColor;
 	
 	/**
 	 * Create the entity.
@@ -21,14 +21,14 @@ public abstract class Entity {
 	 * @param y - The starting y position of the entity
 	 * @param width - The width of the entity
 	 * @param height - The height of the entity
-	 * @param color - The color of the entity
+	 * @param fillColor - The fill color of the entity
 	 */
-	public Entity(float x, float y, float width, float height, int color) {
+	public Entity(float x, float y, float width, float height, int fillColor) {
 		this.position = new PVector(x, y);
 		this.velocity = new PVector();
 		this.width = width;
 		this.height = height;
-		this.color = color;
+		this.fillColor = fillColor;
 	}
 	
 	/**
@@ -48,7 +48,7 @@ public abstract class Entity {
 		g.rectMode = PConstants.CENTER;
 		g.translate(this.position.x, this.position.y);
 		g.noStroke();
-		g.fill(this.color);
+		g.fill(this.fillColor);
 		g.rect(0, 0, this.width, this.height);
 		
 		g.popMatrix();

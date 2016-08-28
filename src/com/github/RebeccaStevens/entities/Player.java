@@ -5,6 +5,8 @@ import processing.core.PConstants;
 
 public class Player extends Entity {
 	
+	private static final int fillColor = 0xFFFF0000;
+	
 	private Key moveLeft1;
 	private Key moveLeft2;
 	private Key moveRight1;
@@ -26,7 +28,7 @@ public class Player extends Entity {
 	 * @param height - The height of the player
 	 */
 	public Player(float x, float y, float width, float height) {
-		super(x, y, width, height, 0xFFFF0000);
+		super(x, y, width, height, fillColor);
 		moveLeft1 = new Key(PConstants.LEFT);
 		moveLeft2 = new Key('A');
 		moveRight1 = new Key(PConstants.RIGHT);

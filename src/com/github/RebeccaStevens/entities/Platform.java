@@ -2,6 +2,8 @@ package com.github.RebeccaStevens.entities;
 
 public class Platform extends Entity {
 
+	private static final int fillColor = 0xFFCCCCCC;
+
 	/**
 	 * Create the player.
 	 * 
@@ -11,7 +13,7 @@ public class Platform extends Entity {
 	 * @param height - The height of the platform
 	 */
 	public Platform(float x, float y, float width, float height) {
-		super(x, y, width, height, 0xFFCCCCCC);
+		super(x, y, width, height, fillColor);
 	}
 
 	@Override
