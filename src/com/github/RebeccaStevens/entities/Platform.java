@@ -1,5 +1,7 @@
 package com.github.RebeccaStevens.entities;
 
+import processing.core.PConstants;
+
 public class Platform extends Entity {
 
 	private static final int fillColor = 0xFFCCCCCC;
@@ -11,10 +13,9 @@ public class Platform extends Entity {
 	 * @param y - The starting y position of the platform
 	 * @param width - The width of the platform
 	 * @param height - The height of the platform
-	 * @param mode 
 	 */
-	public Platform(float x, float y, float width, float height, int mode) {
-		super(x, y, width, height, mode, fillColor);
+	public Platform(float x, float y, float width, float height) {
+		super(x, y, width, height, PConstants.CORNER, fillColor);
 	}
 
 	@Override

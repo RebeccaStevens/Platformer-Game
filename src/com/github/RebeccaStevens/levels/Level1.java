@@ -24,8 +24,8 @@ public class Level1 extends Level {
 		player = new Player(convertGridUnitXToPixels(1.5F), convertGridUnitYToPixels(2), convertGridUnitWidthToPixels(1), convertGridUnitHeightToPixels(2));
 		
 		platforms = new ArrayList<Platform>();
-		platforms.add(new Platform(convertGridUnitXToPixels(0F), convertGridUnitYToPixels(1F), convertGridUnitWidthToPixels(18F), convertGridUnitHeightToPixels(1F), PConstants.CORNER));
-		platforms.add(new Platform(convertGridUnitXToPixels(10F), convertGridUnitYToPixels(2F), convertGridUnitWidthToPixels(4F), convertGridUnitHeightToPixels(1F), PConstants.CORNER));
+		platforms.add(new Platform(convertGridUnitXToPixels(0F), convertGridUnitYToPixels(1F), convertGridUnitWidthToPixels(18F), convertGridUnitHeightToPixels(1F)));
+		platforms.add(new Platform(convertGridUnitXToPixels(10F), convertGridUnitYToPixels(2F), convertGridUnitWidthToPixels(4F), convertGridUnitHeightToPixels(1F)));
 	}
 
 	@Override
