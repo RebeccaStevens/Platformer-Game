@@ -86,6 +86,48 @@ public abstract class DrawableEntity extends Entity implements Drawable {
 	}
 	
 	/**
+	 * Get the width of the entity.
+	 * 
+	 * @return the width
+	 */
+	public float getWidth() {
+		return width;
+	}
+
+	/**
+	 * Set the width of the entity.
+	 * 
+	 * @param width
+	 */
+	public void setWidth(float width) {
+		if (width <= 0) {
+			throw new InvalidParameterException();
+		}
+		this.width = width;
+	}
+
+	/**
+	 * Get the height of the entity.
+	 * 
+	 * @return the height
+	 */
+	public float getHeight() {
+		return height;
+	}
+
+	/**
+	 * Set the height of the entity.
+	 * 
+	 * @param height
+	 */
+	public void setHeight(float height) {
+		if (height <= 0) {
+			throw new InvalidParameterException();
+		}
+		this.height = height;
+	}
+
+	/**
 	 * The left edge's position of this entity.
 	 * 
 	 * @return
