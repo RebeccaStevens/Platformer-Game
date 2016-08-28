@@ -19,17 +19,17 @@ import processing.core.PGraphics;
 public class MainMenuScene extends Scene {
 
 	// colors
-	private int backgroundColor = 0xFF0D47A1;
-	private int titleColor = 0xFFECEFF1;
+	private static final int backgroundColor = 0xFF0D47A1;
+	private static final int titleColor = 0xFFECEFF1;
 	
 	// gui manager
-	private ControlP5 cp5;
+	private final ControlP5 cp5;
 	
 	// button settings
-	private int buttonWidth = 250;
-	private int buttonHeight = 100;
-	private int buttonYGap = 25;
-	private PFont buttonFont = new PFont(new Font("Verdana", Font.PLAIN, 32), true);
+	private static final int buttonWidth = 250;
+	private static final int buttonHeight = 100;
+	private static final int buttonYGap = 25;
+	private static final PFont buttonFont = new PFont(new Font("Verdana", Font.PLAIN, 32), true);
 	private static final int buttonColorBackground = 0xFF5bc0de;
 	private static final int buttonColorForeground = 0xFF31b0d5;
 	private static final int buttonColorActive = 0xFF0275d8;
