@@ -27,8 +27,8 @@ public class GameScene extends Scene {
 	 * Create the game scene.
 	 */
 	public GameScene() {
-		level = new Level1();
 		createGameGraphics();
+		level = new Level1(gameGraphics.width, gameGraphics.height);
 	}
 
 	@Override
@@ -52,6 +52,7 @@ public class GameScene extends Scene {
 		if (level != null) {
 			gameGraphics.beginDraw();
 			level.draw(gameGraphics);
+			level.drawGrid(gameGraphics);
 			gameGraphics.endDraw();
 			g.image(gameGraphics, (g.width - gameGraphics.width) / 2, (g.height - gameGraphics.height) / 2);
 		}

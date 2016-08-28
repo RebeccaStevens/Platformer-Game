@@ -2,7 +2,6 @@ package com.github.RebeccaStevens.levels;
 
 import java.util.ArrayList;
 
-import com.github.RebeccaStevens.Game;
 import com.github.RebeccaStevens.entities.Platform;
 import com.github.RebeccaStevens.entities.Player;
 
@@ -14,16 +13,18 @@ public class Level1 extends Level {
 	private int backgroundColor = 0xFF64B5F6;
 	
 	// entities
-	private Player player;
-	private ArrayList<Platform> platforms;
+	private final Player player;
+	
+	private final ArrayList<Platform> platforms;
 
-	public Level1() {
-		float sketchHeight = Game.getGame().sketchHeight();
+	public Level1(int gameWidth, int gameHeight) {
+		super(gameWidth, gameHeight);
 		
-		player = new Player(125, sketchHeight - 150, 50, 100);
+		player = new Player(convertToPixels(1.5F), convertToPixels(10), convertToPixels(1), convertToPixels(2));
+		
 		platforms = new ArrayList<Platform>();
-		platforms.add(new Platform(600, sketchHeight - 25, 1200, 50));
-		platforms.add(new Platform(700, sketchHeight - 75, 200, 75));
+		platforms.add(new Platform(convertToPixels(8F), convertToPixels(11.5F), convertToPixels(16F), convertToPixels(1F)));
+		platforms.add(new Platform(convertToPixels(10F), convertToPixels(10.5F), convertToPixels(4F), convertToPixels(1F)));
 	}
 
 	@Override
