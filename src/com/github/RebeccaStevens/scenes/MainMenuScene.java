@@ -30,6 +30,10 @@ public class MainMenuScene extends Scene {
 	private int buttonHeight = 100;
 	private int buttonYGap = 25;
 	private PFont buttonFont = new PFont(new Font("Verdana", Font.PLAIN, 32), true);
+	private static final int buttonColorBackground = 0xFF5bc0de;
+	private static final int buttonColorForeground = 0xFF31b0d5;
+	private static final int buttonColorActive = 0xFF0275d8;
+	private static final int buttonColorLabel = 0xFFFFFFFF;
 	
 	/** 
 	 * Create the menu scene.
@@ -47,6 +51,10 @@ public class MainMenuScene extends Scene {
 			.setLabel("Play")
 			.setPosition(xOffset, yOffset)
 			.setSize(buttonWidth, buttonHeight)
+			.setColorBackground(buttonColorBackground)
+			.setColorForeground(buttonColorForeground)
+			.setColorActive(buttonColorActive)
+			.setColorLabel(buttonColorLabel)
 			.setFont(buttonFont)
 			.addListener(new ControlListener() {
 				@Override
@@ -61,6 +69,11 @@ public class MainMenuScene extends Scene {
 			.setLabel("Options")
 			.setPosition(xOffset, yOffset)
 			.setSize(buttonWidth, buttonHeight)
+			.setSize(buttonWidth, buttonHeight)
+			.setColorBackground(buttonColorBackground)
+			.setColorForeground(buttonColorForeground)
+			.setColorActive(buttonColorActive)
+			.setColorLabel(buttonColorLabel)
 			.setFont(buttonFont)
 			.addListener(new ControlListener() {
 				@Override
@@ -74,6 +87,11 @@ public class MainMenuScene extends Scene {
 			.setLabel("Exit")
 			.setPosition(xOffset, yOffset)
 			.setSize(buttonWidth, buttonHeight)
+			.setSize(buttonWidth, buttonHeight)
+			.setColorBackground(buttonColorBackground)
+			.setColorForeground(buttonColorForeground)
+			.setColorActive(buttonColorActive)
+			.setColorLabel(buttonColorLabel)
 			.setFont(buttonFont)
 			.addListener(new ControlListener() {
 				@Override
