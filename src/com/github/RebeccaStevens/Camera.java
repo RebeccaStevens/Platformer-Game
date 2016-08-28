@@ -23,7 +23,7 @@ public class Camera implements Updatable {
 	private float maxY = Float.POSITIVE_INFINITY;
 	
 	/**
-	 * Create a camera not focused on (0, 0).
+	 * Create a camera focused at (0, 0).
 	 */
 	public Camera() {
 		this(0, 0);
