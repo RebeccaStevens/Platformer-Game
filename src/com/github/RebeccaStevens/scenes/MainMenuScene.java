@@ -39,6 +39,7 @@ public class MainMenuScene extends Scene {
 
 		cp5 = new ControlP5(window);
 		cp5.setAutoDraw(false);
+		cp5.hide();
 		
 		int xOffset = (window.getWidth() - buttonWidth) / 2;
 		int yOffset = window.getHeight() * 2 / 5;
@@ -84,10 +85,12 @@ public class MainMenuScene extends Scene {
 
 	@Override
 	protected void enter() {
+		cp5.show();
 	}
 
 	@Override
 	protected void leave() {
+		cp5.hide();
 	}
 
 	@Override
