@@ -27,6 +27,8 @@ public class Level1 extends Level {
 		platforms.add(new Platform(convertGridUnitsXToPixels(10F), convertGridUnitsYToPixels(2F), convertGridUnitsWidthToPixels(4F), convertGridUnitsHeightToPixels(1F)));
 		
 		camera.setFocus(player);
+		camera.setMinX(gameWidth / 2);
+		camera.setMaxY(gameHeight / 2);
 	}
 
 	@Override
