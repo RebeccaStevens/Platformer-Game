@@ -75,7 +75,7 @@ public abstract class Level implements Updatable, Drawable {
 	public void drawGrid(PGraphics g) {
 		g.pushStyle();
 		
-		g.stroke(0x88000000); // black transparent lines	
+		g.stroke(0x33000000); // black transparent lines	
 		g.strokeWeight(1);
 		
 		float xOffset = (camera.getX() * gridWidth / g.width) % 1;
