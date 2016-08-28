@@ -3,7 +3,7 @@ package com.github.RebeccaStevens.entities;
 import multikey.Key;
 import processing.core.PConstants;
 
-public class Player extends Entity {
+public class Player extends DrawableEntity {
 	
 	private static final int fillColor = 0xFFFF0000;
 	

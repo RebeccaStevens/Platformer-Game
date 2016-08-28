@@ -2,7 +2,7 @@ package com.github.RebeccaStevens.entities;
 
 import processing.core.PConstants;
 
-public class Platform extends Entity {
+public class Platform extends DrawableEntity {
 
 	private static final int fillColor = 0xFFCCCCCC;
 

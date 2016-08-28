@@ -1,20 +1,19 @@
 package com.github.RebeccaStevens.entities;
 
-import com.github.RebeccaStevens.Drawable;
 import com.github.RebeccaStevens.Updatable;
-import com.github.RebeccaStevens.Window;
 
-import processing.core.PConstants;
-import processing.core.PGraphics;
+import processing.core.PApplet;
 import processing.core.PVector;
 
-public abstract class Entity implements Updatable, Drawable {
-	
+public abstract class Entity implements Updatable{
+
 	protected final PVector position;
 	protected final PVector velocity;
-	protected float width;
-	protected float height;
-	protected int fillColor;
+	
+	private float minX = Float.NEGATIVE_INFINITY;
+	private float minY = Float.NEGATIVE_INFINITY;
+	private float maxX = Float.POSITIVE_INFINITY;
+	private float maxY = Float.POSITIVE_INFINITY;
 	
 	/**
 	 * Create the entity.
@@ -26,120 +25,52 @@ public abstract class Entity implements Updatable, Drawable {
 	 * @param mode 
 	 * @param fillColor - The fill color of the entity
 	 */
-	public Entity(float x, float y, float width, float height, int mode, int fillColor) {
-		if (mode == PConstants.CENTER) {
-			this.position = new PVector(x, y);
-		} else if (mode == PConstants.CORNER) {
-			this.position = new PVector(x + width / 2, y + height / 2);
-		} else {
-			throw new RuntimeException("unsupported entity mode");
-		}
+	public Entity(float x, float y) {
+		this.position = new PVector(x, y);
 		this.velocity = new PVector();
-		this.width = width;
-		this.height = height;
-		this.fillColor = fillColor;
-	}
-	
-	/**
-	 * Draw the entity.
-	 * 
-	 * @param g
-	 */
-	public void draw(PGraphics g) {
-		g.pushStyle();
-		g.pushMatrix();
-		
-		g.rectMode = PConstants.CENTER;
-		g.translate(this.position.x, this.position.y);
-		g.noStroke();
-		g.fill(this.fillColor);
-		g.rect(0, 0, this.width, this.height);
-		
-		g.popMatrix();
-		g.popStyle();
-	}
-	
-	/**
-	 * Move the entity.
-	 * Changes its position based on its velocity.
-	 */
-	protected void move() {
-		float time = Window.getWindow().getTime().getTimeStep();
-		this.position.x += time * this.velocity.x;
-		this.position.y += time * this.velocity.y;
 	}
 
 	/**
-	 * This entity's x position.
+	 * Set the min x position of the camera.
 	 * 
-	 * @return
+	 * @param minX
 	 */
-	public float getX() {
-		return position.x;
+	public void setMinX(float minX) {
+		this.minX = minX;
 	}
 
 	/**
-	 * This entity's y position.
+	 * Set the min y position of the camera.
 	 * 
-	 * @return
+	 * @param minY
 	 */
-	public float getY() {
-		return position.y;
-	}
-	
-	/**
-	 * The minimum x position of this entity i.e the left edge.
-	 * 
-	 * @return
-	 */
-	public float getMinX() {
-		return this.position.x - this.width / 2;
-	}
-	
-	/**
-	 * The maximum x position of this entity i.e the right edge.
-	 * 
-	 * @return
-	 */
-	public float getMaxX() {
-		return this.position.x + this.width / 2;
-	}
-	
-	/**
-	 * The minimum y position of this entity i.e the top edge.
-	 * 
-	 * @return
-	 */
-	public float getMinY() {
-		return this.position.y - this.height / 2;
-	}
-	
-	/**
-	 * The maximum y position of this entity i.e the bottom edge.
-	 * 
-	 * @return
-	 */
-	public float getMaxY() {
-		return this.position.y + this.height / 2;
-	}
-	
-	/**
-	 * Test if this entity is colliding with another entity.
-	 * 
-	 * @param other - The other entity to test with
-	 * @return True if this entity is touching the other entity
-	 */
-	public boolean collidesWith(Entity other) {
-		if (this == other) {
-			return true;
-		}
-		if (this.getMinX() <= other.getMaxX()
-		&&  this.getMaxX() >= other.getMinX()
-		&&  this.getMinY() <= other.getMaxY()
-		&&  this.getMaxY() >= other.getMinY()) {
-			return true;
-		}
-		return false;
+	public void setMinY(float minY) {
+		this.minY = minY;
 	}
 
+	/**
+	 * Set the max x position of the camera.
+	 * 
+	 * @param maxX
+	 */
+	public void setMaxX(float maxX) {
+		this.maxX = maxX;
+	}
+
+	/**
+	 * Set the max y position of the camera.
+	 * 
+	 * @param maxY
+	 */
+	public void setMaxY(float maxY) {
+		this.maxY = maxY;
+	}
+	
+	/**
+	 * Constrain the entity's position.
+	 */
+	protected void constrain() {
+		position.x = PApplet.constrain(position.x, minX, maxX);
+		position.y = PApplet.constrain(position.y, minY, maxY);
+	}
 }

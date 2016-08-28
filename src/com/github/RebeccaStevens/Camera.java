@@ -1,26 +1,16 @@
 package com.github.RebeccaStevens;
 
+import com.github.RebeccaStevens.entities.DrawableEntity;
 import com.github.RebeccaStevens.entities.Entity;
 
-import processing.core.PApplet;
 import processing.core.PVector;
 
-public class Camera implements Updatable {
+public class Camera extends Entity {
 	
 	/**
 	 * What the camera is focused on.
 	 */
-	protected Entity focus;
-	
-	/**
-	 * The camera's position.
-	 */
-	protected final PVector position;
-	
-	private float minX = Float.NEGATIVE_INFINITY;
-	private float minY = Float.NEGATIVE_INFINITY;
-	private float maxX = Float.POSITIVE_INFINITY;
-	private float maxY = Float.POSITIVE_INFINITY;
+	protected DrawableEntity focus;
 	
 	/**
 	 * Create a camera focused at (0, 0).
@@ -32,7 +22,7 @@ public class Camera implements Updatable {
 	/**
 	 * Create a camera focused on the given entity.
 	 */
-	public Camera(Entity focus) {
+	public Camera(DrawableEntity focus) {
 		this(focus.getX(), focus.getY());
 		this.focus = focus;
 	}
@@ -41,7 +31,7 @@ public class Camera implements Updatable {
 	 * Create a camera focused on the given position.
 	 */
 	public Camera(float x, float y) {
-		position = new PVector(x, y);
+		super(x, y);
 	}
 
 	@Override
@@ -50,8 +40,7 @@ public class Camera implements Updatable {
 			position.set(focus.getX(), focus.getY());
 		}
 		
-		position.x = PApplet.constrain(position.x, minX, maxX);
-		position.y = PApplet.constrain(position.y, minY, maxY);
+		constrain();
 	}
 
 	/**
@@ -59,7 +48,7 @@ public class Camera implements Updatable {
 	 * 
 	 * @return
 	 */
-	public Entity getFocus() {
+	public DrawableEntity getFocus() {
 		return focus;
 	}
 
@@ -68,7 +57,7 @@ public class Camera implements Updatable {
 	 * 
 	 * @param focus the focus to set
 	 */
-	public void setFocus(Entity focus) {
+	public void setFocus(DrawableEntity focus) {
 		this.focus = focus;
 	}
 
@@ -108,42 +97,6 @@ public class Camera implements Updatable {
 	 */
 	public float getY() {
 		return position.y;
-	}
-
-	/**
-	 * Set the min x position of the camera.
-	 * 
-	 * @param minX
-	 */
-	public void setMinX(float minX) {
-		this.minX = minX;
-	}
-
-	/**
-	 * Set the min y position of the camera.
-	 * 
-	 * @param minY
-	 */
-	public void setMinY(float minY) {
-		this.minY = minY;
-	}
-
-	/**
-	 * Set the max x position of the camera.
-	 * 
-	 * @param maxX
-	 */
-	public void setMaxX(float maxX) {
-		this.maxX = maxX;
-	}
-
-	/**
-	 * Set the max y position of the camera.
-	 * 
-	 * @param maxY
-	 */
-	public void setMaxY(float maxY) {
-		this.maxY = maxY;
 	}
 
 }
