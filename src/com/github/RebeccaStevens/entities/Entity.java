@@ -1,12 +1,15 @@
 package com.github.RebeccaStevens.entities;
 
 import com.github.RebeccaStevens.Updatable;
+import com.github.RebeccaStevens.Window;
+import com.github.RebeccaStevens.levels.Level;
 
 import processing.core.PApplet;
 import processing.core.PVector;
 
 public abstract class Entity implements Updatable{
 
+	protected final Level level;
 	protected final PVector position;
 	protected final PVector velocity;
 	
@@ -18,14 +21,12 @@ public abstract class Entity implements Updatable{
 	/**
 	 * Create the entity.
 	 * 
-	 * @param x - The starting x position of the entity 
+	 * @param level - The level this entity is in
+	 * @param x - The starting x position of the entity
 	 * @param y - The starting y position of the entity
-	 * @param width - The width of the entity
-	 * @param height - The height of the entity
-	 * @param mode 
-	 * @param fillColor - The fill color of the entity
 	 */
-	public Entity(float x, float y) {
+	public Entity(Level level, float x, float y) {
+		this.level = level;
 		this.position = new PVector(x, y);
 		this.velocity = new PVector();
 	}
@@ -39,6 +40,15 @@ public abstract class Entity implements Updatable{
 		this.position.x += time * level.convertGridUnitsWidthToPixels(this.velocity.x);
 		this.position.y += time * level.convertGridUnitsWidthToPixels(this.velocity.y);
 		this.constrain();
+	}
+
+	/**
+	 * Get the level this entity is on.
+	 * 
+	 * @return the level
+	 */
+	public Level getLevel() {
+		return level;
 	}
 
 	/**

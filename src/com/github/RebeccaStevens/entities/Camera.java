@@ -1,5 +1,7 @@
 package com.github.RebeccaStevens.entities;
 
+import com.github.RebeccaStevens.levels.Level;
+
 import processing.core.PVector;
 
 public class Camera extends Entity {
@@ -12,23 +14,23 @@ public class Camera extends Entity {
 	/**
 	 * Create a camera focused at (0, 0).
 	 */
-	public Camera() {
-		this(0, 0);
+	public Camera(Level level) {
+		this(level, 0, 0);
 	}
 	
 	/**
 	 * Create a camera focused on the given entity.
 	 */
-	public Camera(DrawableEntity focus) {
-		this(focus.getX(), focus.getY());
+	public Camera(Level level, DrawableEntity focus) {
+		this(level, focus.getX(), focus.getY());
 		this.focus = focus;
 	}
 	
 	/**
 	 * Create a camera focused on the given position.
 	 */
-	public Camera(float x, float y) {
-		super(x, y);
+	public Camera(Level level, float x, float y) {
+		super(level, x, y);
 	}
 
 	@Override

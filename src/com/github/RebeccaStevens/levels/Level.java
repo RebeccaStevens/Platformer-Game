@@ -20,7 +20,7 @@ public abstract class Level implements Updatable, Drawable {
 	protected final Camera camera;
 	
 	public Level(int gameWidth, int gameHeight) {
-		this.camera = new Camera();
+		this.camera = new Camera(this);
 		this.gameWidth = gameWidth;
 		this.gameHeight = gameHeight;
 		updateGridHeight();
@@ -32,7 +32,7 @@ public abstract class Level implements Updatable, Drawable {
 	 * @param gameUnits
 	 * @return
 	 */
-	protected float convertGridUnitsXToPixels(float gameUnits) {
+	public float convertGridUnitsXToPixels(float gameUnits) {
 		return zoom * gameUnits * gameWidth / gridWidth;
 	}
 	
@@ -43,7 +43,7 @@ public abstract class Level implements Updatable, Drawable {
 	 * @param gameUnits
 	 * @return
 	 */
-	protected float convertGridUnitsYToPixels(float gameUnits) {
+	public float convertGridUnitsYToPixels(float gameUnits) {
 		return gameHeight - (zoom * gameUnits * gameHeight / gridHeight);
 	}
 
@@ -53,7 +53,7 @@ public abstract class Level implements Updatable, Drawable {
 	 * @param gameUnits
 	 * @return
 	 */
-	protected float convertGridUnitsWidthToPixels(float gameUnits) {
+	public float convertGridUnitsWidthToPixels(float gameUnits) {
 		return zoom * gameUnits * gameWidth / gridWidth;
 	}
 
@@ -63,7 +63,7 @@ public abstract class Level implements Updatable, Drawable {
 	 * @param gameUnits
 	 * @return
 	 */
-	protected float convertGridUnitsHeightToPixels(float gameUnits) {
+	public float convertGridUnitsHeightToPixels(float gameUnits) {
 		return zoom * gameUnits * gameHeight / gridHeight;
 	}
 	

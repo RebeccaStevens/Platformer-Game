@@ -4,6 +4,7 @@ import java.security.InvalidParameterException;
 
 import com.github.RebeccaStevens.Drawable;
 import com.github.RebeccaStevens.Window;
+import com.github.RebeccaStevens.levels.Level;
 
 import processing.core.PConstants;
 import processing.core.PGraphics;
@@ -17,6 +18,7 @@ public abstract class DrawableEntity extends Entity implements Drawable {
 	/**
 	 * Create the entity.
 	 * 
+	 * @param level - The level this entity is in
 	 * @param x - The starting x position of the entity 
 	 * @param y - The starting y position of the entity
 	 * @param width - The width of the entity
@@ -24,8 +26,8 @@ public abstract class DrawableEntity extends Entity implements Drawable {
 	 * @param mode - The drawing mode of the entity
 	 * @param fillColor - The fill color of the entity
 	 */
-	public DrawableEntity(float x, float y, float width, float height, int mode, int fillColor) {
-		super(x, y);
+	public DrawableEntity(Level level, float x, float y, float width, float height, int mode, int fillColor) {
+		super(level, x, y);
 		if (mode == PConstants.CENTER) {
 			// no action needed
 		} else if (mode == PConstants.CORNER) {

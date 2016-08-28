@@ -1,5 +1,7 @@
 package com.github.RebeccaStevens.entities;
 
+import com.github.RebeccaStevens.levels.Level;
+
 import multikey.Key;
 import processing.core.PConstants;
 
@@ -16,19 +18,20 @@ public class Player extends DrawableEntity {
 	private Key moveJump1;
 	private Key moveJump2;
 
-	private float walkSpeed = 200;
-	private float runSpeed = 450;
+	private float walkSpeed = 3;
+	private float runSpeed = 5;
 
 	/**
 	 * Create the player.
 	 * 
+	 * @param level - The level this entity is in
 	 * @param x - The starting x position of the player 
 	 * @param y - The starting y position of the player
 	 * @param width - The width of the player
 	 * @param height - The height of the player
 	 */
-	public Player(float x, float y, float width, float height) {
-		super(x, y, width, height, PConstants.CENTER, fillColor);
+	public Player(Level level, float x, float y, float width, float height) {
+		super(level, x, y, width, height, PConstants.CENTER, fillColor);
 		moveLeft1 = new Key(PConstants.LEFT);
 		moveLeft2 = new Key('A');
 		moveRight1 = new Key(PConstants.RIGHT);
