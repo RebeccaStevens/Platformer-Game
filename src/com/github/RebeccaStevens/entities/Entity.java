@@ -32,7 +32,7 @@ public abstract class Entity implements Updatable, Drawable {
 		} else if (mode == PConstants.CORNER) {
 			this.position = new PVector(x + width / 2, y + height / 2);
 		} else {
-			new RuntimeException("unsupported entity mode");
+			throw new RuntimeException("unsupported entity mode");
 		}
 		this.velocity = new PVector();
 		this.width = width;
