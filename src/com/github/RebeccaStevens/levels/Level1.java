@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import com.github.RebeccaStevens.entities.Platform;
 import com.github.RebeccaStevens.entities.Player;
 
-import processing.core.PConstants;
 import processing.core.PGraphics;
 
 public class Level1 extends Level {
