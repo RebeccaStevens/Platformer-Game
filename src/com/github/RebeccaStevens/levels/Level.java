@@ -1,5 +1,7 @@
 package com.github.RebeccaStevens.levels;
 
+import java.security.InvalidParameterException;
+
 import com.github.RebeccaStevens.Drawable;
 import com.github.RebeccaStevens.Updatable;
 
@@ -11,6 +13,8 @@ public abstract class Level implements Updatable, Drawable {
 	private int gridHeight;
 	private int gameWidth;
 	private int gameHeight;
+	
+	private float zoom = 1F;
 	
 	public Level(int gameWidth, int gameHeight) {
 		this.gameWidth = gameWidth;
@@ -25,7 +29,7 @@ public abstract class Level implements Updatable, Drawable {
 	 * @return
 	 */
 	protected float convertGridUnitXToPixels(float gameUnits) {
-		return gameUnits * gameWidth / gridWidth;
+		return zoom * gameUnits * gameWidth / gridWidth;
 	}
 	
 
@@ -36,7 +40,7 @@ public abstract class Level implements Updatable, Drawable {
 	 * @return
 	 */
 	protected float convertGridUnitYToPixels(float gameUnits) {
-		return gameHeight - (gameUnits * gameHeight / gridHeight);
+		return gameHeight - (zoom * gameUnits * gameHeight / gridHeight);
 	}
 
 	/**
@@ -46,7 +50,7 @@ public abstract class Level implements Updatable, Drawable {
 	 * @return
 	 */
 	protected float convertGridUnitWidthToPixels(float gameUnits) {
-		return gameUnits * gameWidth / gridWidth;
+		return zoom * gameUnits * gameWidth / gridWidth;
 	}
 
 	/**
@@ -56,7 +60,7 @@ public abstract class Level implements Updatable, Drawable {
 	 * @return
 	 */
 	protected float convertGridUnitHeightToPixels(float gameUnits) {
-		return gameUnits * gameHeight / gridHeight;
+		return zoom * gameUnits * gameHeight / gridHeight;
 	}
 	
 	/**
@@ -71,12 +75,12 @@ public abstract class Level implements Updatable, Drawable {
 		g.strokeWeight(1);
 		
 		// draw the vertical lines
-		for (int i = 0; i < gridWidth + 1; i++) {
-			g.line(i * g.width / gridWidth, 0, i * g.width / gridWidth, g.height);
+		for (int i = 0; i < gridWidth / zoom + 1; i++) {
+			g.line(i * zoom * g.width / gridWidth, 0, i * zoom * g.width / gridWidth, g.height);
 		}
 		// draw the horizontal lines
-		for (int i = 0; i < gridHeight + 1; i++) {
-			g.line(0, i * g.height / gridHeight, g.width, i * g.height / gridHeight);
+		for (int i = 0; i < gridHeight / zoom + 1; i++) {
+			g.line(0, i * zoom * g.height / gridHeight, g.width, i * zoom * g.height / gridHeight);
 		}
 		
 		g.popStyle();
@@ -84,5 +88,26 @@ public abstract class Level implements Updatable, Drawable {
 
 	private void updateGridHeight() {
 		gridHeight = (int) (gridWidth * ((float)(gameHeight)) / gameWidth);
+	}
+
+	/**
+	 * Get the zoom level.
+	 * 
+	 * @return the zoom
+	 */
+	public float getZoom() {
+		return zoom;
+	}
+
+	/**
+	 * Set the zoom level.
+	 * 
+	 * @param
+	 */
+	public void setZoom(float zoom) {
+		if (zoom <= 0) {
+			throw new InvalidParameterException();
+		}
+		this.zoom = zoom;
 	}
 }
