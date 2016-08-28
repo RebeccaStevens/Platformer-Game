@@ -125,6 +125,24 @@ public class Game extends PApplet {
 	public PGraphics getGraphics() {
 		return g;
 	}
+	
+	/**
+	 * Get the width in pixels of the game.
+	 * 
+	 * @return
+	 */
+	public int getWidth() {
+		return g.width;
+	}
+	
+	/**
+	 * Get the height in pixels of the game
+	 * 
+	 * @return
+	 */
+	public int getHeight() {
+		return g.height;
+	}
 
 	/**
 	 * The entry point.

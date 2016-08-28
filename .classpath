@@ -3,7 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Processing"/>
-	<classpathentry kind="lib" path="C:/Users/slaym/Documents/Processing/libraries/G4P/library/G4P.jar"/>
 	<classpathentry kind="lib" path="C:/Users/slaym/Documents/Processing/libraries/multikey/library/multikey.jar"/>
+	<classpathentry kind="lib" path="C:/Users/slaym/Documents/Processing/libraries/controlP5/library/controlP5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

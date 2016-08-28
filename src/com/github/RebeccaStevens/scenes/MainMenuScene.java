@@ -4,10 +4,11 @@ import java.awt.Font;
 
 import com.github.RebeccaStevens.Game;
 
-import g4p_controls.G4P;
-import g4p_controls.GButton;
-import g4p_controls.GEvent;
+import controlP5.ControlEvent;
+import controlP5.ControlListener;
+import controlP5.ControlP5;
 import processing.core.PConstants;
+import processing.core.PFont;
 import processing.core.PGraphics;
 
 /**
@@ -21,72 +22,72 @@ public class MainMenuScene extends Scene {
 	private int backgroundColor = 0xFF0D47A1;
 	private int titleColor = 0xFFECEFF1;
 	
-	// buttons
-	private GButton playButton;
-	private GButton optionsButton;
-	private GButton exitButton;
+	// gui manager
+	private ControlP5 cp5;
 	
 	// button settings
 	private int buttonWidth = 250;
 	private int buttonHeight = 100;
 	private int buttonYGap = 25;
-	private int buttonColorScheme = G4P.CYAN_SCHEME;
-	private Font buttonFont = new Font("Verdana", Font.PLAIN, 32);
+	private PFont buttonFont = new PFont(new Font("Verdana", Font.PLAIN, 32), true);
 	
 	/** 
 	 * Create the menu scene.
 	 */
 	public MainMenuScene() {
 		Game game = Game.getGame();
-		PGraphics g = game.getGraphics();
-		int yOffset = 0;
+
+		cp5 = new ControlP5(game);
+		cp5.setAutoDraw(false);
 		
-		playButton = new GButton(game, (g.width - buttonWidth) / 2, g.height * 2 / 5 + yOffset, buttonWidth, buttonHeight, "Play");
-		playButton.setFont(buttonFont);
-		playButton.setLocalColorScheme(buttonColorScheme);
-		playButton.setEnabled(false);
-		playButton.setVisible(false);
-		playButton.addEventHandler(this, "playButtonEventHandler");
+		int xOffset = (game.getWidth() - buttonWidth) / 2;
+		int yOffset = game.getHeight() * 2 / 5;
+		cp5.addButton("playButton")
+			.setLabel("Play")
+			.setPosition(xOffset, yOffset)
+			.setSize(buttonWidth, buttonHeight)
+			.setFont(buttonFont)
+			.addListener(new ControlListener() {
+				@Override
+				public void controlEvent(ControlEvent e) {
+					Game game = Game.getGame();
+					Scene.setCurrentScene(game.createGameScene());
+				}
+			});
 		
 		yOffset += buttonHeight + buttonYGap;
-		optionsButton = new GButton(game, (g.width - buttonWidth) / 2, g.height * 2 / 5 + yOffset, buttonWidth, buttonHeight, "Options");
-		optionsButton.setFont(buttonFont);
-		optionsButton.setLocalColorScheme(buttonColorScheme);
-		optionsButton.setEnabled(false);
-		optionsButton.setVisible(false);
-		optionsButton.addEventHandler(this, "optionsButtonEventHandler");
+		cp5.addButton("optionsButton")
+			.setLabel("Options")
+			.setPosition(xOffset, yOffset)
+			.setSize(buttonWidth, buttonHeight)
+			.setFont(buttonFont)
+			.addListener(new ControlListener() {
+				@Override
+				public void controlEvent(ControlEvent e) {
+					System.out.println("Not Implemented"); // TODO show settings
+				}
+			});
 		
 		yOffset += buttonHeight + buttonYGap;
-		exitButton = new GButton(game, (g.width - buttonWidth) / 2, g.height * 2 / 5 + yOffset, buttonWidth, buttonHeight, "Exit");
-		exitButton.setFont(buttonFont);
-		exitButton.setLocalColorScheme(buttonColorScheme);
-		exitButton.setEnabled(false);
-		exitButton.setVisible(false);
-		exitButton.addEventHandler(this, "exitButtonEventHandler");
+		cp5.addButton("exitButton")
+			.setLabel("Exit")
+			.setPosition(xOffset, yOffset)
+			.setSize(buttonWidth, buttonHeight)
+			.setFont(buttonFont)
+			.addListener(new ControlListener() {
+				@Override
+				public void controlEvent(ControlEvent e) {
+					Game.getGame().exit();
+				}
+			});
 	}
 
 	@Override
 	protected void enter() {
-		playButton.setEnabled(true);
-		playButton.setVisible(true);
-
-		optionsButton.setEnabled(true);
-		optionsButton.setVisible(true);
-
-		exitButton.setEnabled(true);
-		exitButton.setVisible(true);
 	}
 
 	@Override
 	protected void leave() {
-		playButton.setEnabled(false);
-		playButton.setVisible(false);
-
-		optionsButton.setEnabled(false);
-		optionsButton.setVisible(false);
-
-		exitButton.setEnabled(false);
-		exitButton.setVisible(false);
 	}
 
 	@Override
@@ -105,44 +106,9 @@ public class MainMenuScene extends Scene {
 		g.textSize(Math.min(g.width / 15, g.height / 10));
 		g.text(Game.getGame().getTitle(), g.width / 2, g.height / 5);
 		
+		cp5.controlWindow.draw(g);
+		
 		g.popStyle();
-	}
-	
-	/**
-	 * Handles the play button's events.
-	 * 
-	 * @param button
-	 * @param event
-	 */
-	public void playButtonEventHandler(GButton button, GEvent event) {
-		if (event == GEvent.CLICKED) {
-			Game game = Game.getGame();
-			Scene.setCurrentScene(game.createGameScene());
-		}
-	}
-	
-	/**
-	 * Handles the options button's events.
-	 * 
-	 * @param button
-	 * @param event
-	 */
-	public void optionsButtonEventHandler(GButton button, GEvent event) {
-		if (event == GEvent.CLICKED) {
-			System.out.println("Not Implemented"); // TODO show settings
-		}
-	}
-	
-	/**
-	 * Handles the exit button's events.
-	 * 
-	 * @param button
-	 * @param event
-	 */
-	public void exitButtonEventHandler(GButton button, GEvent event) {
-		if (event == GEvent.CLICKED) {
-			Game.getGame().exit();
-		}
 	}
 
 }
