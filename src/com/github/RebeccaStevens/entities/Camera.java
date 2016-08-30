@@ -80,22 +80,4 @@ public class Camera extends Entity {
 		return position.copy();
 	}
 	
-	/**
-	 * Get the x position of the camera.
-	 * 
-	 * @return
-	 */
-	public float getX() {
-		return position.x;
-	}
-
-	/**
-	 * Get the y position of the camera.
-	 * 
-	 * @return
-	 */
-	public float getY() {
-		return position.y;
-	}
-
 }
