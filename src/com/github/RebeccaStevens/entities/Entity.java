@@ -52,6 +52,15 @@ public abstract class Entity implements Updatable{
 	}
 
 	/**
+	 * Get the position of the entity.
+	 * 
+	 * @return
+	 */
+	public PVector getPosition() {
+		return position.copy();
+	}
+
+	/**
 	 * This entity's x position.
 	 * 
 	 * @return

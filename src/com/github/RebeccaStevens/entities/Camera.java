@@ -71,13 +71,4 @@ public class Camera extends Entity {
 		position.set(x, y);
 	}
 
-	/**
-	 * Get the position of the camera.
-	 * 
-	 * @return
-	 */
-	public PVector getPosition() {
-		return position.copy();
-	}
-	
 }
