@@ -12,39 +12,13 @@ import com.github.RebeccaStevens.Updatable;
 public abstract class Scene implements Updatable, Drawable {
 	
 	/**
-	 * The scene currently being displayed.
-	 */
-	private static Scene currentScene;
-
-	/**
 	 * Enter the scene.
 	 */
-	protected abstract void enter();
+	public abstract void enter();
 	
 	/**
 	 * Leave the scene.
 	 */
-	protected abstract void leave();
-	
-	/**
-	 * Get the current scene.
-	 * @return
-	 */
-	public static Scene getCurrentScene() {
-		return currentScene;
-	}
-
-	/**
-	 * Change the scene.
-	 * 
-	 * @param changeTo - The scene to change to.
-	 */
-	public static void setCurrentScene(Scene changeTo) {
-		if (currentScene != null) {
-			currentScene.leave();
-		}
-		currentScene = changeTo;
-		currentScene.enter();
-	}
+	public abstract void leave();
 
 }

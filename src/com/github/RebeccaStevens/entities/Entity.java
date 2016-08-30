@@ -1,7 +1,7 @@
 package com.github.RebeccaStevens.entities;
 
 import com.github.RebeccaStevens.Updatable;
-import com.github.RebeccaStevens.Window;
+import com.github.RebeccaStevens.App;
 import com.github.RebeccaStevens.levels.Level;
 
 import processing.core.PApplet;
@@ -36,7 +36,7 @@ public abstract class Entity implements Updatable{
 	 * Changes its position based on its velocity.
 	 */
 	protected void move() {
-		float time = Window.getWindow().getTime().getTimeStep();
+		float time = App.getWindow().getTime().getTimeStep();
 		this.position.x += time * level.convertGridUnitsVelocityXToPixels(this.velocity.x);
 		this.position.y += time * level.convertGridUnitsVelocityYToPixels(this.velocity.y);
 		this.constrain();
@@ -48,7 +48,7 @@ public abstract class Entity implements Updatable{
 	 * @return the level
 	 */
 	public Level getLevel() {
-		return level;
+		return this.level;
 	}
 
 	/**
@@ -57,7 +57,7 @@ public abstract class Entity implements Updatable{
 	 * @return
 	 */
 	public PVector getPosition() {
-		return position.copy();
+		return this.position.copy();
 	}
 
 	/**
@@ -75,7 +75,7 @@ public abstract class Entity implements Updatable{
 	 * @return
 	 */
 	public float getX() {
-		return position.x;
+		return this.position.x;
 	}
 
 	/**
@@ -84,7 +84,7 @@ public abstract class Entity implements Updatable{
 	 * @return
 	 */
 	public float getY() {
-		return position.y;
+		return this.position.y;
 	}
 
 	/**
@@ -127,7 +127,7 @@ public abstract class Entity implements Updatable{
 	 * Constrain the entity's position.
 	 */
 	protected void constrain() {
-		position.x = PApplet.constrain(position.x, minX, maxX);
-		position.y = PApplet.constrain(position.y, minY, maxY);
+		this.position.x = PApplet.constrain(this.position.x, this.minX, this.maxX);
+		this.position.y = PApplet.constrain(this.position.y, this.minY, this.maxY);
 	}
 }

@@ -2,8 +2,6 @@ package com.github.RebeccaStevens.entities;
 
 import com.github.RebeccaStevens.levels.Level;
 
-import processing.core.PVector;
-
 public class Camera extends Entity {
 	
 	/**
@@ -36,10 +34,10 @@ public class Camera extends Entity {
 	@Override
 	public void update() {
 		if (focus != null) {
-			position.set(focus.getX(), focus.getY());
+			this.position.set(this.focus.getX(), this.focus.getY());
 		}
 		
-		constrain();
+		this.constrain();
 	}
 
 	/**
@@ -48,7 +46,7 @@ public class Camera extends Entity {
 	 * @return
 	 */
 	public DrawableEntity getFocus() {
-		return focus;
+		return this.focus;
 	}
 
 	/**
@@ -67,8 +65,8 @@ public class Camera extends Entity {
 	 * @param focus the focus to set
 	 */
 	public void setFocus(float x, float y) {
-		focus = null;
-		position.set(x, y);
+		this.focus = null;
+		this.position.set(x, y);
 	}
 
 }

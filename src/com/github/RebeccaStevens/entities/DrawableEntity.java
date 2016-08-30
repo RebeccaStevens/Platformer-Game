@@ -64,7 +64,7 @@ public abstract class DrawableEntity extends Entity implements Drawable {
 	 * @return the width
 	 */
 	public float getWidth() {
-		return width;
+		return this.width;
 	}
 
 	/**
@@ -85,7 +85,7 @@ public abstract class DrawableEntity extends Entity implements Drawable {
 	 * @return the height
 	 */
 	public float getHeight() {
-		return height;
+		return this.height;
 	}
 
 	/**

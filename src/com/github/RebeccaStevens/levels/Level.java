@@ -4,7 +4,9 @@ import java.security.InvalidParameterException;
 
 import com.github.RebeccaStevens.Drawable;
 import com.github.RebeccaStevens.Updatable;
+import com.github.RebeccaStevens.App;
 import com.github.RebeccaStevens.entities.Camera;
+import com.github.RebeccaStevens.scenes.GameScene;
 
 import processing.core.PGraphics;
 
@@ -19,11 +21,15 @@ public abstract class Level implements Updatable, Drawable {
 	
 	protected final Camera camera;
 	
-	public Level(int gameWidth, int gameHeight) {
+	/**
+	 * Create the Level.
+	 * 
+	 * @param gameWidth  - The width of the game screen
+	 * @param gameHeight - The height of the game screen
+	 */
+	public Level() {
 		this.camera = new Camera(this);
-		this.gameWidth = gameWidth;
-		this.gameHeight = gameHeight;
-		updateGridHeight();
+		this.updateGameGrid();
 	}
 
 	/**
@@ -33,7 +39,7 @@ public abstract class Level implements Updatable, Drawable {
 	 * @return
 	 */
 	public float convertGridUnitsXToPixels(float gameUnits) {
-		return zoom * gameUnits * gameWidth / gridWidth;
+		return this.zoom * gameUnits * this.gameWidth / this.gridWidth;
 	}
 	
 	/**
@@ -43,7 +49,7 @@ public abstract class Level implements Updatable, Drawable {
 	 * @return
 	 */
 	public float convertGridUnitsYToPixels(float gameUnits) {
-		return gameHeight - (zoom * gameUnits * gameHeight / gridHeight);
+		return this.gameHeight - (this.zoom * gameUnits * this.gameHeight / this.gridHeight);
 	}
 	
 	/**
@@ -53,7 +59,7 @@ public abstract class Level implements Updatable, Drawable {
 	 * @return
 	 */
 	public float convertGridUnitsVelocityXToPixels(float gameUnits) {
-		return zoom * gameUnits * gameWidth / gridWidth;
+		return this.zoom * gameUnits * this.gameWidth / this.gridWidth;
 	}
 	
 	/**
@@ -63,7 +69,7 @@ public abstract class Level implements Updatable, Drawable {
 	 * @return
 	 */
 	public float convertGridUnitsVelocityYToPixels(float gameUnits) {
-		return -(zoom * gameUnits * gameHeight / gridHeight);
+		return -(this.zoom * gameUnits * this.gameHeight / this.gridHeight);
 	}
 
 	/**
@@ -73,7 +79,7 @@ public abstract class Level implements Updatable, Drawable {
 	 * @return
 	 */
 	public float convertGridUnitsWidthToPixels(float gameUnits) {
-		return zoom * gameUnits * gameWidth / gridWidth;
+		return this.zoom * gameUnits * this.gameWidth / this.gridWidth;
 	}
 
 	/**
@@ -83,7 +89,7 @@ public abstract class Level implements Updatable, Drawable {
 	 * @return
 	 */
 	public float convertGridUnitsHeightToPixels(float gameUnits) {
-		return zoom * gameUnits * gameHeight / gridHeight;
+		return this.zoom * gameUnits * this.gameHeight / this.gridHeight;
 	}
 	
 	/**
@@ -97,33 +103,56 @@ public abstract class Level implements Updatable, Drawable {
 		g.stroke(0x33000000); // black transparent lines	
 		g.strokeWeight(1);
 		
-		float xOffset = (camera.getX() * gridWidth / g.width) % 1;
-		float yOffset = (camera.getY() * gridHeight / g.height) % 1;
+		float xOffset = (this.camera.getX() * this.gridWidth / g.width) % 1;
+		float yOffset = (this.camera.getY() * this.gridHeight / g.height) % 1;
 		
 		// draw the vertical lines
 		for (int i = 0; i < gridWidth / zoom + 1; i++) {
-			g.line((i - xOffset) * zoom * g.width / gridWidth, 0, (i - xOffset) * zoom * g.width / gridWidth, g.height);
+			g.line((i - xOffset) * this.zoom * g.width / this.gridWidth, 0, (i - xOffset) * this.zoom * g.width / this.gridWidth, g.height);
 		}
 		
 		// draw the horizontal lines
 		for (int i = 0; i < gridHeight / zoom + 1; i++) {
-			g.line(0, g.height - ((i + yOffset) * zoom * g.height / gridHeight), g.width, g.height - ((i + yOffset) * zoom * g.height / gridHeight));
+			g.line(0, g.height - ((i + yOffset) * this.zoom * g.height / this.gridHeight), g.width, g.height - ((i + yOffset) * this.zoom * g.height / this.gridHeight));
 		}
 		
 		g.popStyle();
 	}
 	
 	/**
-	 * Apply the camera offset.
+	 * Get the width of the game grid (in grid units).
 	 * 
-	 * @param g
+	 * @return
 	 */
-	protected void applyCamera(PGraphics g) {
-		g.translate(g.width / 2 - camera.getX(), g.height / 2 - camera.getY());
+	public int getGridWidth() {
+		return gridWidth;
 	}
 
-	private void updateGridHeight() {
-		gridHeight = (int) (gridWidth * ((float)(gameHeight)) / gameWidth);
+	/**
+	 * Get the height of the game grid (in grid units).
+	 * 
+	 * @return
+	 */
+	public int getGridHeight() {
+		return gridHeight;
+	}
+
+	/**
+	 * Get the width of the game (in pixels).
+	 * 
+	 * @return
+	 */
+	public int getGameWidth() {
+		return gameWidth;
+	}
+
+	/**
+	 * Get the height of the game (in pixels).
+	 * 
+	 * @return
+	 */
+	public int getGameHeight() {
+		return gameHeight;
 	}
 
 	/**
@@ -132,7 +161,7 @@ public abstract class Level implements Updatable, Drawable {
 	 * @return the zoom
 	 */
 	public float getZoom() {
-		return zoom;
+		return this.zoom;
 	}
 
 	/**
@@ -145,5 +174,25 @@ public abstract class Level implements Updatable, Drawable {
 			throw new InvalidParameterException();
 		}
 		this.zoom = zoom;
+	}
+
+	/**
+	 * Update the size of the grid.
+	 */
+	public void updateGameGrid() {
+		GameScene gs = App.getWindow().getGameScene();
+		this.gameWidth = gs.getGameWidth();
+		this.gameHeight = gs.getGameHeight();
+		
+		this.gridHeight = (int) (this.gridWidth * ((float)(this.gameHeight)) / this.gameWidth);
+	}
+
+	/**
+	 * Apply the camera offset.
+	 * 
+	 * @param g
+	 */
+	protected void applyCamera(PGraphics g) {
+		g.translate(g.width / 2 - this.camera.getX(), g.height / 2 - this.camera.getY());
 	}
 }

@@ -2,7 +2,7 @@ package com.github.RebeccaStevens.scenes;
 
 import java.awt.Font;
 
-import com.github.RebeccaStevens.Window;
+import com.github.RebeccaStevens.App;
 
 import controlP5.ControlEvent;
 import controlP5.ControlListener;
@@ -39,42 +39,41 @@ public class MainMenuScene extends Scene {
 	 * Create the menu scene.
 	 */
 	public MainMenuScene() {
-		Window window = Window.getWindow();
+		App app = App.getWindow();
 
-		cp5 = new ControlP5(window);
-		cp5.setAutoDraw(false);
-		cp5.hide();
+		this.cp5 = new ControlP5(app);
+		this.cp5.setAutoDraw(false);
+		this.cp5.hide();
 		
-		int xOffset = (window.getWidth() - buttonWidth) / 2;
-		int yOffset = window.getHeight() * 2 / 5;
-		cp5.addButton("playButton")
+		int xOffset = (app.getWidth() - MainMenuScene.buttonWidth) / 2;
+		int yOffset = app.getHeight() * 2 / 5;
+		this.cp5.addButton("playButton")
 			.setLabel("Play")
 			.setPosition(xOffset, yOffset)
-			.setSize(buttonWidth, buttonHeight)
-			.setColorBackground(buttonColorBackground)
-			.setColorForeground(buttonColorForeground)
-			.setColorActive(buttonColorActive)
-			.setColorLabel(buttonColorLabel)
-			.setFont(buttonFont)
+			.setSize(MainMenuScene.buttonWidth, MainMenuScene.buttonHeight)
+			.setColorBackground(MainMenuScene.buttonColorBackground)
+			.setColorForeground(MainMenuScene.buttonColorForeground)
+			.setColorActive(MainMenuScene.buttonColorActive)
+			.setColorLabel(MainMenuScene.buttonColorLabel)
+			.setFont(MainMenuScene.buttonFont)
 			.addListener(new ControlListener() {
 				@Override
 				public void controlEvent(ControlEvent e) {
-					Window window = Window.getWindow();
-					Scene.setCurrentScene(window.createGameScene());
+					App app = App.getWindow();
+					app.setCurrentScene(app.createGameScene());
 				}
 			});
 		
-		yOffset += buttonHeight + buttonYGap;
-		cp5.addButton("optionsButton")
+		yOffset += MainMenuScene.buttonHeight + MainMenuScene.buttonYGap;
+		this.cp5.addButton("optionsButton")
 			.setLabel("Options")
 			.setPosition(xOffset, yOffset)
-			.setSize(buttonWidth, buttonHeight)
-			.setSize(buttonWidth, buttonHeight)
-			.setColorBackground(buttonColorBackground)
-			.setColorForeground(buttonColorForeground)
-			.setColorActive(buttonColorActive)
-			.setColorLabel(buttonColorLabel)
-			.setFont(buttonFont)
+			.setSize(MainMenuScene.buttonWidth, MainMenuScene.buttonHeight)
+			.setColorBackground(MainMenuScene.buttonColorBackground)
+			.setColorForeground(MainMenuScene.buttonColorForeground)
+			.setColorActive(MainMenuScene.buttonColorActive)
+			.setColorLabel(MainMenuScene.buttonColorLabel)
+			.setFont(MainMenuScene.buttonFont)
 			.addListener(new ControlListener() {
 				@Override
 				public void controlEvent(ControlEvent e) {
@@ -83,32 +82,31 @@ public class MainMenuScene extends Scene {
 			});
 		
 		yOffset += buttonHeight + buttonYGap;
-		cp5.addButton("exitButton")
+		this.cp5.addButton("exitButton")
 			.setLabel("Exit")
 			.setPosition(xOffset, yOffset)
-			.setSize(buttonWidth, buttonHeight)
-			.setSize(buttonWidth, buttonHeight)
-			.setColorBackground(buttonColorBackground)
-			.setColorForeground(buttonColorForeground)
-			.setColorActive(buttonColorActive)
-			.setColorLabel(buttonColorLabel)
-			.setFont(buttonFont)
+			.setSize(MainMenuScene.buttonWidth, MainMenuScene.buttonHeight)
+			.setColorBackground(MainMenuScene.buttonColorBackground)
+			.setColorForeground(MainMenuScene.buttonColorForeground)
+			.setColorActive(MainMenuScene.buttonColorActive)
+			.setColorLabel(MainMenuScene.buttonColorLabel)
+			.setFont(MainMenuScene.buttonFont)
 			.addListener(new ControlListener() {
 				@Override
 				public void controlEvent(ControlEvent e) {
-					Window.getWindow().exit();
+					App.getWindow().exit();
 				}
 			});
 	}
 
 	@Override
-	protected void enter() {
-		cp5.show();
+	public void enter() {
+		this.cp5.show();
 	}
 
 	@Override
-	protected void leave() {
-		cp5.hide();
+	public void leave() {
+		this.cp5.hide();
 	}
 
 	@Override
@@ -120,14 +118,14 @@ public class MainMenuScene extends Scene {
 	public void draw(PGraphics g) {
 		g.pushStyle();
 		
-		g.background(backgroundColor);
+		g.background(MainMenuScene.backgroundColor);
 		
-		g.fill(titleColor);
+		g.fill(MainMenuScene.titleColor);
 		g.textAlign(PConstants.CENTER, PConstants.CENTER);
 		g.textSize(Math.min(g.width / 15, g.height / 10));
-		g.text(Window.getWindow().getTitle(), g.width / 2, g.height / 5);
+		g.text(App.getWindow().getTitle(), g.width / 2, g.height / 5);
 		
-		cp5.controlWindow.draw(g);
+		this.cp5.controlWindow.draw(g);
 		
 		g.popStyle();
 	}

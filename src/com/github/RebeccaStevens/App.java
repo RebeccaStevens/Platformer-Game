@@ -6,7 +6,6 @@ import com.github.RebeccaStevens.scenes.Scene;
 
 import multikey.MultiKeyManager;
 import processing.core.PApplet;
-import processing.core.PGraphics;
 
 /**
  * The main file that contains the entry point and has references to each top level scene.
@@ -14,12 +13,12 @@ import processing.core.PGraphics;
  * @author Rebecca Stevens
  *
  */
-public class Window extends PApplet {
+public class App extends PApplet {
 	
 	/**
 	 * The main Game Object.
 	 */
-	private static Window me;
+	private static App me;
 	
 	/**
 	 * The title of the game.
@@ -37,6 +36,11 @@ public class Window extends PApplet {
 	private final Time time;
 
 	/**
+	 * The scene currently being displayed.
+	 */
+	private Scene currentScene;
+
+	/**
 	 * The menu scene.
 	 */
 	private MainMenuScene mainMenuScene;
@@ -49,27 +53,27 @@ public class Window extends PApplet {
 	/**
 	 * Construct a the Game Object.
 	 */
-	public Window() {
-		Window.me = this;
-		settings = new Settings();
-		time = new Time();
+	public App() {
+		App.me = this;
+		this.settings = new Settings();
+		this.time = new Time();
 	}
 	
 	/**
 	 * @see https://processing.org/reference/settings_.html
 	 */
 	public void settings() {
-		size(1024, 768);
+		this.size(1024, 768);
 	}
 	
 	/**
 	 * @see https://processing.org/reference/setup_.html
 	 */
 	public void setup() {
-		surface.setTitle(title);
+		this.surface.setTitle(this.title);
 		new MultiKeyManager(this);
-		mainMenuScene = new MainMenuScene();
-		Scene.setCurrentScene(mainMenuScene);
+		this.mainMenuScene = new MainMenuScene();
+		this.setCurrentScene(this.mainMenuScene);
 	}
 	
 	/**
@@ -78,11 +82,11 @@ public class Window extends PApplet {
 	 * @see https://processing.org/reference/draw_.html
 	 */
 	public void draw() {
-		Scene scene = Scene.getCurrentScene();
-		time.update();
+		Scene scene = this.getCurrentScene();
+		this.time.update();
 		if (scene != null) {
 			scene.update();
-			scene.draw(g);
+			scene.draw(this.g);
 		}
 	}
 	
@@ -91,8 +95,8 @@ public class Window extends PApplet {
 	 * 
 	 * @return
 	 */
-	public static Window getWindow() {
-		return me;
+	public static App getWindow() {
+		return App.me;
 	}
 	
 	/**
@@ -101,16 +105,7 @@ public class Window extends PApplet {
 	 * @return The Game's title
 	 */
 	public String getTitle() {
-		return title;
-	}
-
-	/**
-	 * Get the Graphics Object.
-	 * 
-	 * @return The Graphics Object
-	 */
-	public PGraphics getGraphics() {
-		return g;
+		return this.title;
 	}
 	
 	/**
@@ -119,7 +114,7 @@ public class Window extends PApplet {
 	 * @return
 	 */
 	public Settings getSettings() {
-		return settings;
+		return this.settings;
 	}
 	
 	/**
@@ -128,7 +123,7 @@ public class Window extends PApplet {
 	 * @return
 	 */
 	public Time getTime() {
-		return time;
+		return this.time;
 	}
 
 	/**
@@ -137,7 +132,7 @@ public class Window extends PApplet {
 	 * @return
 	 */
 	public int getWidth() {
-		return g.width;
+		return this.g.width;
 	}
 	
 	/**
@@ -146,16 +141,37 @@ public class Window extends PApplet {
 	 * @return
 	 */
 	public int getHeight() {
-		return g.height;
+		return this.g.height;
 	}
 	
+	/**
+	 * Get the current scene.
+	 * @return
+	 */
+	public Scene getCurrentScene() {
+		return this.currentScene;
+	}
+
+	/**
+	 * Change the scene.
+	 * 
+	 * @param changeTo - The scene to change to.
+	 */
+	public void setCurrentScene(Scene changeTo) {
+		if (this.currentScene != null) {
+			this.currentScene.leave();
+		}
+		this.currentScene = changeTo;
+		this.currentScene.enter();
+	}
+
 	/**
 	 * Get the menu scene.
 	 * 
 	 * @return The menu scene
 	 */
 	public MainMenuScene getMainMenuScene() {
-		return mainMenuScene;
+		return this.mainMenuScene;
 	}
 
 	/**
@@ -164,14 +180,16 @@ public class Window extends PApplet {
 	 * @return The game scene
 	 */
 	public GameScene getGameScene() {
-		return gameScene;
+		return this.gameScene;
 	}
 
 	/**
 	 * Create a new game scene.
 	 */
 	public GameScene createGameScene() {
-		return gameScene = new GameScene();
+		this.gameScene = new GameScene();
+		this.gameScene.setLevel(1);
+		return this.gameScene;
 	}
 
 	/**
@@ -180,7 +198,7 @@ public class Window extends PApplet {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		PApplet.main(Window.class.getName());
+		PApplet.main(App.class.getName());
 	}
 
 }
