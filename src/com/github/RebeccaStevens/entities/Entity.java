@@ -61,6 +61,15 @@ public abstract class Entity implements Updatable{
 	}
 
 	/**
+	 * Get the velocity of the entity.
+	 * 
+	 * @return
+	 */
+	public PVector getVelocity() {
+		return this.velocity.copy();
+	}
+
+	/**
 	 * This entity's x position.
 	 * 
 	 * @return
