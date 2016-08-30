@@ -33,9 +33,9 @@ public class Player extends DrawableEntity {
 	 * @param height - The height of the player
 	 */
 	public Player(Level level, float x, float y, float width, float height) {
-		super(level, x, y, width, height, PConstants.CENTER, fillColor);
+		super(level, x, y, width, height, PConstants.CENTER, Player.fillColor);
 		
-		updateKeyBindings();
+		this.updateKeyBindings();
 		
 		this.walkSpeed = 3;
 		this.runSpeed = 5;
