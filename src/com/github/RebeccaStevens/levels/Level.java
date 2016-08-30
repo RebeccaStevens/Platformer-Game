@@ -180,7 +180,7 @@ public abstract class Level implements Updatable, Drawable {
 	 * Update the size of the grid.
 	 */
 	public void updateGameGrid() {
-		GameScene gs = App.getWindow().getGameScene();
+		GameScene gs = App.getApp().getGameScene();
 		this.gameWidth = gs.getGameWidth();
 		this.gameHeight = gs.getGameHeight();
 		

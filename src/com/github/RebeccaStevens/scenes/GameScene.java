@@ -96,7 +96,7 @@ public class GameScene extends Scene {
 	 * Create the game graphics.
 	 */
 	private void createGameGraphics() {
-		App app = App.getWindow();
+		App app = App.getApp();
 		float aspectRatio = app.getSettings().getAspectRation();
 		
 		int windowWidth = app.getWidth();

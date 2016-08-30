@@ -95,7 +95,7 @@ public class App extends PApplet {
 	 * 
 	 * @return
 	 */
-	public static App getWindow() {
+	public static App getApp() {
 		return App.me;
 	}
 	

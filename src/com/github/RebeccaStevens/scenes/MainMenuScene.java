@@ -39,7 +39,7 @@ public class MainMenuScene extends Scene {
 	 * Create the menu scene.
 	 */
 	public MainMenuScene() {
-		App app = App.getWindow();
+		App app = App.getApp();
 
 		this.cp5 = new ControlP5(app);
 		this.cp5.setAutoDraw(false);
@@ -59,7 +59,7 @@ public class MainMenuScene extends Scene {
 			.addListener(new ControlListener() {
 				@Override
 				public void controlEvent(ControlEvent e) {
-					App app = App.getWindow();
+					App app = App.getApp();
 					app.setCurrentScene(app.createGameScene());
 				}
 			});
@@ -94,7 +94,7 @@ public class MainMenuScene extends Scene {
 			.addListener(new ControlListener() {
 				@Override
 				public void controlEvent(ControlEvent e) {
-					App.getWindow().exit();
+					App.getApp().exit();
 				}
 			});
 	}
@@ -123,7 +123,7 @@ public class MainMenuScene extends Scene {
 		g.fill(MainMenuScene.titleColor);
 		g.textAlign(PConstants.CENTER, PConstants.CENTER);
 		g.textSize(Math.min(g.width / 15, g.height / 10));
-		g.text(App.getWindow().getTitle(), g.width / 2, g.height / 5);
+		g.text(App.getApp().getTitle(), g.width / 2, g.height / 5);
 		
 		this.cp5.controlWindow.draw(g);
 		
