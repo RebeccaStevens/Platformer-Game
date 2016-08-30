@@ -52,6 +52,24 @@ public abstract class Entity implements Updatable{
 	}
 
 	/**
+	 * This entity's x position.
+	 * 
+	 * @return
+	 */
+	public float getX() {
+		return position.x;
+	}
+
+	/**
+	 * This entity's y position.
+	 * 
+	 * @return
+	 */
+	public float getY() {
+		return position.y;
+	}
+
+	/**
 	 * Set the min x position of the camera.
 	 * 
 	 * @param minX

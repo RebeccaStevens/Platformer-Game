@@ -57,24 +57,6 @@ public abstract class DrawableEntity extends Entity implements Drawable {
 		g.popMatrix();
 		g.popStyle();
 	}
-
-	/**
-	 * This entity's x position.
-	 * 
-	 * @return
-	 */
-	public float getX() {
-		return position.x;
-	}
-
-	/**
-	 * This entity's y position.
-	 * 
-	 * @return
-	 */
-	public float getY() {
-		return position.y;
-	}
 	
 	/**
 	 * Get the width of the entity.
