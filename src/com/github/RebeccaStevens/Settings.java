@@ -10,8 +10,6 @@ public final class Settings {
 	
 	private boolean wideScreen = false;
 	
-
-	
 	// Player Controls
 	private int keyCodePlayerMoveLeft1 = PConstants.LEFT;
 	private int keyCodePlayerMoveLeft2 = 'A';
