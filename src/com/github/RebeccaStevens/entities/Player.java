@@ -39,8 +39,8 @@ public class Player extends Actor {
 		
 		updateKeyBindings();
 		
-		this.walkSpeed = 3;
-		this.runSpeed = 5;
+		this.walkSpeed = 6;
+		this.runSpeed = 10;
 	}
 
 	@Override
