@@ -48,10 +48,19 @@ public class Player extends Actor {
 		int dx  = ((this.moveRight1.isPressed() || this.moveRight2.isPressed()) ? 1 : 0)
 				- ((this.moveLeft1.isPressed()  || this.moveLeft2.isPressed())  ? 1 : 0);
 		
-		if (this.moveRun1.isPressed() || this.moveRun2.isPressed()) {
-			this.setVelocityX(this.runSpeed * dx);
+		if (this.isOnGround()) {
+			if (this.moveJump1.isPressed() || this.moveJump2.isPressed()) {
+				addVelocity(0, 5);
+			}
+			
+			if (this.moveRun1.isPressed() || this.moveRun2.isPressed()) {
+				setVelocityX(this.runSpeed * dx);
+			} else {
+				setVelocityX(this.walkSpeed * dx);
+			}
+			setVelocityOffsetX(0);
 		} else {
-			this.setVelocityX(this.walkSpeed * dx);
+			setVelocityOffsetX(this.walkSpeed * dx * 0.1F);
 		}
 	}
 
