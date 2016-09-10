@@ -1,58 +1,45 @@
 package com.github.RebeccaStevens.levels;
 
-import java.util.ArrayList;
-
-import com.github.RebeccaStevens.entities.Platform;
 import com.github.RebeccaStevens.entities.Player;
 
+import gamelib.game.Level2D;
+import gamelib.game.cameras.CameraFollow;
+import gamelib.game.entities.platforms.BasicPlatform;
 import processing.core.PGraphics;
 
-public class Level1 extends Level {
+public class Level1 extends Level2D {
 	
 	// colors
 	private int backgroundColor = 0xFF64B5F6;
 	
-	// entities
-	private final Player player;
+	private Player player;
 	
-	private final ArrayList<Platform> platforms;
+	private CameraFollow camera;
 
 	public Level1() {
-		this.player = new Player(this, convertGridUnitsXToPixels(1.5F), convertGridUnitsYToPixels(2), convertGridUnitsWidthToPixels(1), convertGridUnitsHeightToPixels(2));
+		setGravity(-20);
+		setDrawGrid(true);
+		setDrawBoundingBoxes(true);
 		
-		this.platforms = new ArrayList<Platform>();
-		this.platforms.add(new Platform(this, convertGridUnitsXToPixels(0F), convertGridUnitsYToPixels(1F), convertGridUnitsWidthToPixels(18F), convertGridUnitsHeightToPixels(1F)));
-		this.platforms.add(new Platform(this, convertGridUnitsXToPixels(10F), convertGridUnitsYToPixels(2F), convertGridUnitsWidthToPixels(4F), convertGridUnitsHeightToPixels(1F)));
+		setZoom(0.67F);
 		
-		this.camera.setFocus(this.player);
-		this.camera.setMinX(this.getGameWidth() / 2);
-		this.camera.setMaxY(this.getGameHeight() / 2);
-		this.player.setMinX(this.player.getWidth() / 2);
+		this.player = new Player(this, 2, 3, 1, 2);
+		
+		this.camera = new CameraFollow(this, this.player);
+		setCamera(this.camera);
+
+		new BasicPlatform(this, 0F, 1F, 18F, 1F);
+		new BasicPlatform(this, 10F, 2F, 4F, 1F);
+//		this.camera.setMaxY(this.getGameHeight() / 2);
+//		this.player.setMinX(this.player.getWidth() / 2);
 	}
 
 	@Override
-	public void update() {
-		for (Platform p : platforms) {
-			p.update();
-		}
-		this.player.update();
-		this.camera.update();
+	public void drawBackground(PGraphics g) {
+		g.background(backgroundColor);
 	}
 
 	@Override
-	public void draw(PGraphics g) {
-		g.pushStyle();
-		g.pushMatrix();
-		
-		applyCamera(g);
-		g.background(this.backgroundColor);
-		
-		for (Platform p : this.platforms) {
-			p.draw(g);
-		}
-		this.player.draw(g);
-		
-		g.popMatrix();
-		g.popStyle();
+	public void drawOverlay(PGraphics g) {
 	}
 }

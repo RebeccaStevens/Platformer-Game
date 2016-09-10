@@ -1,10 +1,9 @@
 package com.github.RebeccaStevens;
 
-import com.github.RebeccaStevens.scenes.GameScene;
 import com.github.RebeccaStevens.scenes.MainMenuScene;
-import com.github.RebeccaStevens.scenes.Scene;
 
-import multikey.MultiKeyManager;
+import gamelib.GameManager;
+import keymanager.KeyManager;
 import processing.core.PApplet;
 
 /**
@@ -16,47 +15,42 @@ import processing.core.PApplet;
 public class App extends PApplet {
 	
 	/**
-	 * The main Game Object.
+	 * The main applet.
 	 */
 	private static App me;
-	
-	/**
-	 * The title of the game.
-	 */
-	private final String title = "Platformer Game";
 
 	/**
 	 * The game settings
 	 */
 	private final Settings settings;
-
+	
 	/**
-	 * Manages the game time.
+	 * The Game Manager
 	 */
-	private final Time time;
-
+	private GameManager gameManager;
+	
 	/**
-	 * The scene currently being displayed.
+	 * The Key Manager
 	 */
-	private Scene currentScene;
+	@SuppressWarnings("unused")
+	private KeyManager keyManager;
 
 	/**
-	 * The menu scene.
+	 * The title of the game.
+	 */
+	private String title = "Platformer Game";
+
+	/**
+	 * The main menu scene.
 	 */
 	private MainMenuScene mainMenuScene;
-	
+
 	/**
-	 * The game scene.
-	 */
-	private GameScene gameScene;
-	
-	/**
-	 * Construct a the Game Object.
+	 * Construct a the applet.
 	 */
 	public App() {
 		App.me = this;
 		this.settings = new Settings();
-		this.time = new Time();
 	}
 	
 	/**
@@ -71,9 +65,10 @@ public class App extends PApplet {
 	 */
 	public void setup() {
 		this.surface.setTitle(this.title);
-		new MultiKeyManager(this);
+		this.gameManager = new GameManager(this);
+		this.keyManager = new KeyManager(this);
 		this.mainMenuScene = new MainMenuScene();
-		this.setCurrentScene(this.mainMenuScene);
+		this.gameManager.setActiveScene(this.mainMenuScene);
 	}
 	
 	/**
@@ -82,23 +77,26 @@ public class App extends PApplet {
 	 * @see https://processing.org/reference/draw_.html
 	 */
 	public void draw() {
-		Scene scene = this.getCurrentScene();
-		this.time.update();
-		if (scene != null) {
-			scene.update();
-			scene.draw(this.g);
-		}
 	}
 	
 	/**
-	 * Get the window.
+	 * Get the applet.
 	 * 
 	 * @return
 	 */
-	public static App getApp() {
+	public static App getApplet() {
 		return App.me;
 	}
 	
+	/**
+	 * Get the Game Manager.
+	 * 
+	 * @return
+	 */
+	public GameManager getGameManager() {
+		return gameManager;
+	}
+
 	/**
 	 * Get the title of the Game.
 	 * 
@@ -116,80 +114,23 @@ public class App extends PApplet {
 	public Settings getSettings() {
 		return this.settings;
 	}
-	
-	/**
-	 * Get the Time object.
-	 * 
-	 * @return
-	 */
-	public Time getTime() {
-		return this.time;
-	}
 
 	/**
-	 * Get the width in pixels of the game.
+	 * Get the width of the viewport (in pixels).
 	 * 
 	 * @return
 	 */
-	public int getWidth() {
+	public int getViewportWidth() {
 		return this.g.width;
 	}
 	
 	/**
-	 * Get the height in pixels of the game
+	 * Get the height of the viewport (in pixels).
 	 * 
 	 * @return
 	 */
-	public int getHeight() {
+	public int getViewportHeight() {
 		return this.g.height;
-	}
-	
-	/**
-	 * Get the current scene.
-	 * @return
-	 */
-	public Scene getCurrentScene() {
-		return this.currentScene;
-	}
-
-	/**
-	 * Change the scene.
-	 * 
-	 * @param changeTo - The scene to change to.
-	 */
-	public void setCurrentScene(Scene changeTo) {
-		if (this.currentScene != null) {
-			this.currentScene.leave();
-		}
-		this.currentScene = changeTo;
-		this.currentScene.enter();
-	}
-
-	/**
-	 * Get the menu scene.
-	 * 
-	 * @return The menu scene
-	 */
-	public MainMenuScene getMainMenuScene() {
-		return this.mainMenuScene;
-	}
-
-	/**
-	 * Get the game scene.
-	 * 
-	 * @return The game scene
-	 */
-	public GameScene getGameScene() {
-		return this.gameScene;
-	}
-
-	/**
-	 * Create a new game scene.
-	 */
-	public GameScene createGameScene() {
-		this.gameScene = new GameScene();
-		this.gameScene.setLevel(1);
-		return this.gameScene;
 	}
 
 	/**

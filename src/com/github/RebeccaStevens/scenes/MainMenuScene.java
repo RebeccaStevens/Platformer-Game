@@ -3,10 +3,13 @@ package com.github.RebeccaStevens.scenes;
 import java.awt.Font;
 
 import com.github.RebeccaStevens.App;
+import com.github.RebeccaStevens.levels.Level1;
 
 import controlP5.ControlEvent;
 import controlP5.ControlListener;
 import controlP5.ControlP5;
+import gamelib.scenes.GameScene;
+import gamelib.scenes.Scene;
 import processing.core.PConstants;
 import processing.core.PFont;
 import processing.core.PGraphics;
@@ -39,14 +42,14 @@ public class MainMenuScene extends Scene {
 	 * Create the menu scene.
 	 */
 	public MainMenuScene() {
-		App app = App.getApp();
+		App app = App.getApplet();
 
 		this.cp5 = new ControlP5(app);
 		this.cp5.setAutoDraw(false);
 		this.cp5.hide();
 		
-		int xOffset = (app.getWidth() - MainMenuScene.buttonWidth) / 2;
-		int yOffset = app.getHeight() * 2 / 5;
+		int xOffset = (app.getViewportWidth() - MainMenuScene.buttonWidth) / 2;
+		int yOffset = app.getViewportHeight() * 2 / 5;
 		this.cp5.addButton("playButton")
 			.setLabel("Play")
 			.setPosition(xOffset, yOffset)
@@ -59,8 +62,9 @@ public class MainMenuScene extends Scene {
 			.addListener(new ControlListener() {
 				@Override
 				public void controlEvent(ControlEvent e) {
-					App app = App.getApp();
-					app.setCurrentScene(app.createGameScene());
+					GameScene gameScene = App.getApplet().getGameManager().getGameScene();
+					gameScene.setActiveLevel(new Level1());
+					gameScene.makeActive();
 				}
 			});
 		
@@ -94,7 +98,7 @@ public class MainMenuScene extends Scene {
 			.addListener(new ControlListener() {
 				@Override
 				public void controlEvent(ControlEvent e) {
-					App.getApp().exit();
+					App.getApplet().exit();
 				}
 			});
 	}
@@ -110,7 +114,7 @@ public class MainMenuScene extends Scene {
 	}
 
 	@Override
-	public void update() {
+	public void update(float delta) {
 		
 	}
 
@@ -123,7 +127,7 @@ public class MainMenuScene extends Scene {
 		g.fill(MainMenuScene.titleColor);
 		g.textAlign(PConstants.CENTER, PConstants.CENTER);
 		g.textSize(Math.min(g.width / 15, g.height / 10));
-		g.text(App.getApp().getTitle(), g.width / 2, g.height / 5);
+		g.text(App.getApplet().getTitle(), g.width / 2, g.height / 5);
 		
 		this.cp5.controlWindow.draw(g);
 		
