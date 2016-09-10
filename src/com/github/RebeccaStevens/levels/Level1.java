@@ -17,8 +17,11 @@ public class Level1 extends Level2D {
 	private CameraFollow camera;
 
 	public Level1() {
-		setGravity(-5);
+		setGravity(-20);
 		setDrawGrid(true);
+		setDrawBoundingBoxes(true);
+		
+		setZoom(0.67F);
 		
 		this.player = new Player(this, 2, 3, 1, 2);
 		
@@ -27,7 +30,6 @@ public class Level1 extends Level2D {
 
 		new BasicPlatform(this, 0F, 1F, 18F, 1F);
 		new BasicPlatform(this, 10F, 2F, 4F, 1F);
-
 //		this.camera.setMaxY(this.getGameHeight() / 2);
 //		this.player.setMinX(this.player.getWidth() / 2);
 	}
@@ -39,6 +41,5 @@ public class Level1 extends Level2D {
 
 	@Override
 	public void drawOverlay(PGraphics g) {
-		
 	}
 }
