@@ -5,9 +5,8 @@ import com.github.RebeccaStevens.Settings;
 
 import gamelib.game.Level;
 import gamelib.game.entities.Actor;
-import processing.core.PConstants;
-import processing.core.PGraphics;
 import keymanager.Key;
+import processing.core.PGraphics;
 
 public class Player extends Actor {
 	
@@ -86,15 +85,9 @@ public class Player extends Actor {
 
 	@Override
 	public void draw(PGraphics g) {
-		g.pushStyle();
-		
-		
-		g.rectMode = PConstants.CENTER;
 		g.noStroke();
 		g.fill(fillColor);
 		g.rect(0, 0, getWidthInPixels(), getHeightInPixels());
-		
-		g.popStyle();
 	}
 
 }
