@@ -33,7 +33,7 @@ public class Level1 extends Level2D {
 		// Create the platforms
 		float x = 0;
 		float y = 0;
-		float w = 24;
+		float w = 25;
 		float h = 4;
 		float gap = 0;
 		
@@ -42,7 +42,7 @@ public class Level1 extends Level2D {
 		new BasicPlatform(this, x + 13, y + h - 0.5F, 4F, 3F);
 		new BasicPlatform(this, x + 16, y + h - 0.5F, 3F, 4.25F);
 		
-		gap = 3;
+		gap = 3.5F;
 		x += w + gap;
 		w = 8;
 		new BasicPlatform(this, x, y, w, h);
