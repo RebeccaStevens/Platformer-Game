@@ -17,21 +17,51 @@ public class Level1 extends Level2D {
 	private CameraFollow camera;
 
 	public Level1() {
-		setGravity(-20);
+		setGravity(-20F);
 		setDrawGrid(true);
 		setDrawBoundingBoxes(true);
 		
 		setZoom(0.67F);
 		
-		this.player = new Player(this, 2, 3, 1, 2);
+		this.player = new Player(this, 2, 3.1F, 1, 2);
 		
 		this.camera = new CameraFollow(this, this.player);
 		setCamera(this.camera);
 
-		new BasicPlatform(this, 0F, 1F, 18F, 1F);
-		new BasicPlatform(this, 10F, 2F, 4F, 1F);
+		float x = 0;
+		float y = 1;
+		float w = 18;
+		float h = 1;
+		float gap = 0;
+		
+		new BasicPlatform(this, x, y, w, h);
+		new BasicPlatform(this, x + 10, y + 1, 4F, 1F);
+		
+		gap = 3;
+		x += w + gap;
+		w = 8;
+		new BasicPlatform(this, x, y, w, h);
+		
+		gap = 5F;
+		x += w + gap;
+		w = 6F;
+		new BasicPlatform(this, x, y, w, h);
+		
+		
 //		this.camera.setMaxY(this.getGameHeight() / 2);
 //		this.player.setMinX(this.player.getWidth() / 2);
+	}
+
+	@Override
+	public void preUpdate(float delta) {
+	}
+
+	@Override
+	public void postUpdate(float delta) {
+		if (player.getY() < -5) {
+			player.setLocation(2, 3.1F);
+			player.setVelocity(0, 0);
+		}
 	}
 
 	@Override
@@ -41,5 +71,6 @@ public class Level1 extends Level2D {
 
 	@Override
 	public void drawOverlay(PGraphics g) {
+		
 	}
 }
