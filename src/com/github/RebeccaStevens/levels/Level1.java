@@ -52,9 +52,11 @@ public class Level1 extends Level2D {
 		w = 6F;
 		new BasicPlatform(this, x, y, w, h);
 		
-		
-//		this.camera.setMaxY(this.getGameHeight() / 2);
-//		this.player.setMinX(this.player.getWidth() / 2);
+		// Apply limits
+		App app = App.getApplet();
+		this.player.limitXMin(this.player.getWidth() / 2);
+		this.camera.limitAbsoluteXMin(app.getViewportWidth() / 2);
+		this.camera.limitAbsoluteYMax(app.getViewportHeight() / 2);
 	}
 
 	@Override
