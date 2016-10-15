@@ -66,6 +66,7 @@ public class App extends PApplet {
 	public void setup() {
 		this.surface.setTitle(this.title);
 		this.gameManager = new GameManager(this);
+		this.gameManager.setDrawFPS(true);
 		this.keyManager = new KeyManager(this);
 		this.mainMenuScene = new MainMenuScene();
 		this.gameManager.setActiveScene(this.mainMenuScene);
