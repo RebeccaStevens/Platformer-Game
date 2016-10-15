@@ -1,5 +1,6 @@
 package com.github.RebeccaStevens.levels;
 
+import com.github.RebeccaStevens.App;
 import com.github.RebeccaStevens.entities.Player;
 
 import gamelib.game.Level2D;
@@ -18,24 +19,28 @@ public class Level1 extends Level2D {
 
 	public Level1() {
 		setGravity(-20F);
-		setDrawGrid(true);
-		setDrawBoundingBoxes(true);
+//		setDrawGrid(true);
+//		setDrawBoundingBoxes(true);
 		
 		setZoom(0.67F);
 		
-		this.player = new Player(this, 2, 3.1F, 1, 2);
+		this.player = new Player(this, 0, 0, 1, 2);
+		resetPlayer();
 		
 		this.camera = new CameraFollow(this, this.player);
 		setCamera(this.camera);
 
+		// Create the platforms
 		float x = 0;
-		float y = 1;
-		float w = 18;
-		float h = 1;
+		float y = 0;
+		float w = 24;
+		float h = 4;
 		float gap = 0;
 		
 		new BasicPlatform(this, x, y, w, h);
-		new BasicPlatform(this, x + 10, y + 1, 4F, 1F);
+		new BasicPlatform(this, x + 10, y + h - 0.5F, 4F, 1.75F);
+		new BasicPlatform(this, x + 13, y + h - 0.5F, 4F, 3F);
+		new BasicPlatform(this, x + 16, y + h - 0.5F, 3F, 4.25F);
 		
 		gap = 3;
 		x += w + gap;
@@ -59,8 +64,7 @@ public class Level1 extends Level2D {
 	@Override
 	public void postUpdate(float delta) {
 		if (player.getY() < -5) {
-			player.setLocation(2, 3.1F);
-			player.setVelocity(0, 0);
+			resetPlayer();
 		}
 	}
 
@@ -72,5 +76,13 @@ public class Level1 extends Level2D {
 	@Override
 	public void drawOverlay(PGraphics g) {
 		
+	}
+	
+	/**
+	 * Reset the player.
+	 */
+	private void resetPlayer() {
+		player.setLocation(2, 6.1F);
+		player.setVelocity(0, 0);
 	}
 }
