@@ -22,8 +22,10 @@ public class Player extends Actor {
 	private final Key moveJump1  = new Key();
 	private final Key moveJump2  = new Key();
 
+	private float airSpeed;
 	private float walkSpeed;
 	private float runSpeed;
+	private float jumpSpeed;
 
 	/**
 	 * Create the player.
@@ -38,9 +40,11 @@ public class Player extends Actor {
 		super(level, x, y, width, height, 10);
 		
 		updateKeyBindings();
-		
-		this.walkSpeed = 6;
-		this.runSpeed = 10;
+
+		this.airSpeed  = 0.5F;
+		this.walkSpeed =  7F;
+		this.runSpeed  = 11F;
+		this.jumpSpeed =  5F;
 	}
 
 	@Override
@@ -50,7 +54,7 @@ public class Player extends Actor {
 		
 		if (this.isOnGround()) {
 			if (this.moveJump1.isPressed() || this.moveJump2.isPressed()) {
-				addVelocity(0, 5);
+				addVelocity(0, jumpSpeed);
 			}
 			
 			if (this.moveRun1.isPressed() || this.moveRun2.isPressed()) {
@@ -60,7 +64,7 @@ public class Player extends Actor {
 			}
 			setVelocityOffsetX(0);
 		} else {
-			setVelocityOffsetX(this.walkSpeed * dx * 0.1F);
+			setVelocityOffsetX(this.airSpeed * dx);
 		}
 	}
 
@@ -88,7 +92,7 @@ public class Player extends Actor {
 		g.rectMode = PConstants.CENTER;
 		g.noStroke();
 		g.fill(fillColor);
-		g.rect(0, 0, getWidth(), getHeight());
+		g.rect(0, 0, getWidthInPixels(), getHeightInPixels());
 		
 		g.popStyle();
 	}
