@@ -6,7 +6,7 @@ import com.github.RebeccaStevens.Settings;
 import gamelib.game.Entity;
 import gamelib.game.Level;
 import gamelib.game.entities.Actor;
-import keymanager.Key;
+import keymanager.Input;
 import processing.core.PGraphics;
 import processing.core.PVector;
 
@@ -14,17 +14,17 @@ public class Player extends Actor {
 	
 	private static final int fillColor = 0xFFFF0000;
 	
-	private final Key moveLeft1  = new Key();
-	private final Key moveLeft2  = new Key();
-	private final Key moveRight1 = new Key();
-	private final Key moveRight2 = new Key();
-	private final Key moveRun1   = new Key();
-	private final Key moveRun2   = new Key();
-	private final Key moveJump1  = new Key();
-	private final Key moveJump2  = new Key();
+	private final Input moveLeft1  = new Input();
+	private final Input moveLeft2  = new Input();
+	private final Input moveRight1 = new Input();
+	private final Input moveRight2 = new Input();
+	private final Input moveRun1   = new Input();
+	private final Input moveRun2   = new Input();
+	private final Input moveJump1  = new Input();
+	private final Input moveJump2  = new Input();
 	
-	private final Key fightShoot1 = new Key();
-	private final Key fightShoot2 = new Key();
+	private final Input fightPrimary1 = new Input();
+	private final Input fightPrimary2 = new Input();
 
 	private float airSpeed;
 	private float walkSpeed;
@@ -86,24 +86,6 @@ public class Player extends Actor {
 		}
 	}
 
-	/**
-	 * Update the key binds according to the game settings.
-	 */
-	public void updateKeyBindings() {
-		Settings settings = App.getApplet().getSettings();
-		
-		this.moveLeft1.setKeyCode(settings.getKeyCodePlayerMoveLeft1());
-		this.moveLeft2.setKeyCode(settings.getKeyCodePlayerMoveLeft2());
-		this.moveRight1.setKeyCode(settings.getKeyCodePlayerMoveRight1());
-		this.moveRight2.setKeyCode(settings.getKeyCodePlayerMoveRight2());
-		this.moveRun1.setKeyCode(settings.getKeyCodePlayerMoveRun1());
-		this.moveRun2.setKeyCode(settings.getKeyCodePlayerMoveRun2());
-		this.moveJump1.setKeyCode(settings.getKeyCodePlayerMoveJump1());
-		this.moveJump2.setKeyCode(settings.getKeyCodePlayerMoveJump2());
-		this.fightShoot1.setKeyCode(settings.getKeyCodePlayerFightShoot1());
-		this.fightShoot2.setKeyCode(settings.getKeyCodePlayerFightShoot2());
-	}
-
 	@Override
 	public void draw(PGraphics g) {
 		g.noStroke();
@@ -118,6 +100,26 @@ public class Player extends Actor {
 	@Override
 	public void onCollidesWith(Entity entityCollidedWith) {
 		
+	}
+
+
+	/**
+	 * Update the key binds according to the game settings.
+	 */
+	public void updateKeyBindings() {
+		Settings settings = App.getApplet().getSettings();
+		
+		this.moveLeft1.setInput(settings.inputPlayerMoveLeft1.getType(), settings.inputPlayerMoveLeft1.getInputCode());
+		this.moveLeft2.setInput(settings.inputPlayerMoveLeft2.getType(), settings.inputPlayerMoveLeft2.getInputCode());
+		this.moveRight1.setInput(settings.inputPlayerMoveRight1.getType(), settings.inputPlayerMoveRight1.getInputCode());
+		this.moveRight2.setInput(settings.inputPlayerMoveRight2.getType(), settings.inputPlayerMoveRight2.getInputCode());
+		this.moveRun1.setInput(settings.inputPlayerMoveRun1.getType(), settings.inputPlayerMoveRun1.getInputCode());
+		this.moveRun2.setInput(settings.inputPlayerMoveRun2.getType(), settings.inputPlayerMoveRun2.getInputCode());
+		this.moveJump1.setInput(settings.inputPlayerMoveJump1.getType(), settings.inputPlayerMoveJump1.getInputCode());
+		this.moveJump2.setInput(settings.inputPlayerMoveJump2.getType(), settings.inputPlayerMoveJump2.getInputCode());
+		
+		this.fightPrimary1.setInput(settings.inputPlayerFightPrimary1.getType(), settings.inputPlayerFightPrimary1.getInputCode());
+		this.fightPrimary2.setInput(settings.inputPlayerFightPrimary2.getType(), settings.inputPlayerFightPrimary2.getInputCode());
 	}
 
 }

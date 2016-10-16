@@ -1,196 +1,20 @@
 package com.github.RebeccaStevens;
 
+import keymanager.InputType;
 import processing.core.PConstants;
 
 public final class Settings {
-
-	private final float wideScreenAspectRatio = 16F / 9F;
-	
-	private final float normalScreenAspectRatio = 4F / 3F;
-	
-	private boolean wideScreen = false;
 	
 	// Player Controls
-	private int keyCodePlayerMoveLeft1 = PConstants.LEFT;
-	private int keyCodePlayerMoveLeft2 = 'A';
-	private int keyCodePlayerMoveRight1 = PConstants.RIGHT;
-	private int keyCodePlayerMoveRight2 = 'D';
-	private int keyCodePlayerMoveRun1 = PConstants.SHIFT;
-	private int keyCodePlayerMoveRun2 = 0;
-	private int keyCodePlayerMoveJump1 = PConstants.UP;
-	private int keyCodePlayerMoveJump2 = ' ';
+	public final UesrInput inputPlayerMoveLeft1 = new UesrInput(InputType.KeyBoardKey, PConstants.LEFT);
+	public final UesrInput inputPlayerMoveLeft2 = new UesrInput(InputType.KeyBoardKey, 'A');
+	public final UesrInput inputPlayerMoveRight1 = new UesrInput(InputType.KeyBoardKey, PConstants.RIGHT);
+	public final UesrInput inputPlayerMoveRight2 = new UesrInput(InputType.KeyBoardKey, 'D');
+	public final UesrInput inputPlayerMoveRun1 = new UesrInput(InputType.KeyBoardKey, PConstants.SHIFT);
+	public final UesrInput inputPlayerMoveRun2 = new UesrInput(InputType.KeyBoardKey, 0);
+	public final UesrInput inputPlayerMoveJump1 = new UesrInput(InputType.KeyBoardKey, PConstants.UP);
+	public final UesrInput inputPlayerMoveJump2 = new UesrInput(InputType.KeyBoardKey, ' ');
 	
-	private int keyCodePlayerFightShoot1 = PConstants.CONTROL;
-	private int keyCodePlayerFightShoot2 = 0;
-
-	/**
-	 * Returns if the game should is being played in wide screen.
-	 * 
-	 * @return
-	 */
-	public boolean isWideScreen() {
-		return wideScreen;
-	}
-
-	/**
-	 * Set whether or not the game is in wide screen mode.
-	 * 
-	 * @param wideScreen
-	 */
-	public void setWideScreen(boolean wideScreen) {
-		this.wideScreen = wideScreen;
-	}
-	
-	/**
-	 * Get the game's aspect ratio.
-	 * 
-	 * @return
-	 */
-	public float getAspectRation() {
-		if (wideScreen) {
-			return wideScreenAspectRatio;
-		} else {
-			return normalScreenAspectRatio;
-		}
-	}
-	
-	/**
-	 * @return
-	 */
-	public int getKeyCodePlayerMoveLeft1() {
-		return keyCodePlayerMoveLeft1;
-	}
-
-	/**
-	 * @return
-	 */
-	public int getKeyCodePlayerMoveLeft2() {
-		return keyCodePlayerMoveLeft2;
-	}
-
-	/**
-	 * @return
-	 */
-	public int getKeyCodePlayerMoveRight1() {
-		return keyCodePlayerMoveRight1;
-	}
-
-	/**
-	 * @return
-	 */
-	public int getKeyCodePlayerMoveRight2() {
-		return keyCodePlayerMoveRight2;
-	}
-
-	/**
-	 * @return
-	 */
-	public int getKeyCodePlayerMoveRun1() {
-		return keyCodePlayerMoveRun1;
-	}
-
-	/**
-	 * @return
-	 */
-	public int getKeyCodePlayerMoveRun2() {
-		return keyCodePlayerMoveRun2;
-	}
-
-	/**
-	 * @return
-	 */
-	public int getKeyCodePlayerMoveJump1() {
-		return keyCodePlayerMoveJump1;
-	}
-
-	/**
-	 * @return
-	 */
-	public int getKeyCodePlayerMoveJump2() {
-		return keyCodePlayerMoveJump2;
-	}
-
-	/**
-	 * @return
-	 */
-	public int getKeyCodePlayerFightShoot1() {
-		return keyCodePlayerFightShoot1;
-	}
-
-	/**
-	 * @return
-	 */
-	public int getKeyCodePlayerFightShoot2() {
-		return keyCodePlayerFightShoot2;
-	}
-
-	/**
-	 * @param keyCodePlayerMoveLeft1
-	 */
-	public void setKeyCodePlayerMoveLeft1(int keyCodePlayerMoveLeft1) {
-		this.keyCodePlayerMoveLeft1 = keyCodePlayerMoveLeft1;
-	}
-
-	/**
-	 * @param keyCodePlayerMoveLeft2
-	 */
-	public void setKeyCodePlayerMoveLeft2(int keyCodePlayerMoveLeft2) {
-		this.keyCodePlayerMoveLeft2 = keyCodePlayerMoveLeft2;
-	}
-
-	/**
-	 * @param keyCodePlayerMoveRight1
-	 */
-	public void setKeyCodePlayerMoveRight1(int keyCodePlayerMoveRight1) {
-		this.keyCodePlayerMoveRight1 = keyCodePlayerMoveRight1;
-	}
-
-	/**
-	 * @param keyCodePlayerMoveRight2
-	 */
-	public void setKeyCodePlayerMoveRight2(int keyCodePlayerMoveRight2) {
-		this.keyCodePlayerMoveRight2 = keyCodePlayerMoveRight2;
-	}
-
-	/**
-	 * @param keyCodePlayerMoveRun1
-	 */
-	public void setKeyCodePlayerMoveRun1(int keyCodePlayerMoveRun1) {
-		this.keyCodePlayerMoveRun1 = keyCodePlayerMoveRun1;
-	}
-
-	/**
-	 * @param keyCodePlayerMoveRun2
-	 */
-	public void setKeyCodePlayerMoveRun2(int keyCodePlayerMoveRun2) {
-		this.keyCodePlayerMoveRun2 = keyCodePlayerMoveRun2;
-	}
-
-	/**
-	 * @param keyCodePlayerMoveJump1
-	 */
-	public void setKeyCodePlayerMoveJump1(int keyCodePlayerMoveJump1) {
-		this.keyCodePlayerMoveJump1 = keyCodePlayerMoveJump1;
-	}
-
-	/**
-	 * @param keyCodePlayerMoveJump2
-	 */
-	public void setKeyCodePlayerMoveJump2(int keyCodePlayerMoveJump2) {
-		this.keyCodePlayerMoveJump2 = keyCodePlayerMoveJump2;
-	}
-
-	/**
-	 * @param keyCodePlayerMoveJump1
-	 */
-	public void setKeyCodePlayerFightShoot1(int keyCodePlayerFightShoot1) {
-		this.keyCodePlayerFightShoot1 = keyCodePlayerFightShoot1;
-	}
-
-	/**
-	 * @param keyCodePlayerMoveJump2
-	 */
-	public void setKeyCodePlayerFightShoot2(int keyCodePlayerFightShoot2) {
-		this.keyCodePlayerFightShoot2 = keyCodePlayerFightShoot2;
-	}
+	public final UesrInput inputPlayerFightPrimary1 = new UesrInput(InputType.KeyBoardKey, PConstants.CONTROL);
+	public final UesrInput inputPlayerFightPrimary2 = new UesrInput(InputType.MouseButton, PConstants.LEFT);
 }
