@@ -8,7 +8,6 @@ import gamelib.game.Level;
 import gamelib.game.entities.Actor;
 import keymanager.Input;
 import processing.core.PGraphics;
-import processing.core.PVector;
 
 public class Player extends Actor {
 	
@@ -30,10 +29,8 @@ public class Player extends Actor {
 	private float walkSpeed;
 	private float runSpeed;
 	private float jumpSpeed;
-
-	private final PVector crossHairLocation;
 	
-	private long timeOfLastShot;
+	private Gun weapon;
 
 	/**
 	 * Create the player.
@@ -47,7 +44,7 @@ public class Player extends Actor {
 	public Player(Level level, float x, float y, float width, float height) {
 		super(level, x, y, width, height, 10);
 		
-		crossHairLocation = new PVector();
+		setWeapon(new Gun(level, x, y));
 		
 		updateKeyBindings();
 
@@ -77,12 +74,8 @@ public class Player extends Actor {
 			setVelocityOffsetX(this.airSpeed * dx);
 		}
 		
-		if (this.fightShoot1.isPressed() || this.fightShoot2.isPressed()) {
-			long timeStamp = App.getApplet().getGameManager().getTime().getTimeStamp();
-			if (timeOfLastShot <= timeStamp - 200) {
-				new Bullet(getLevel(), getX(), getY(), crossHairLocation, this);
-				timeOfLastShot = timeStamp;
-			}
+		if (this.fightPrimary1.isPressed() || this.fightPrimary2.isPressed()) {
+			weapon.shoot();
 		}
 	}
 
@@ -93,15 +86,27 @@ public class Player extends Actor {
 		g.rect(0, 0, getWidthInPixels(), getHeightInPixels());
 	}
 
-	public void setCrossHairLocation(PVector location) {
-		crossHairLocation.set(location);
-	}
-
 	@Override
 	public void onCollidesWith(Entity entityCollidedWith) {
 		
 	}
 
+	/**
+	 * Get the player's weapon.
+	 * @return
+	 */
+	public Gun getWeapon() {
+		return weapon;
+	}
+
+	/**
+	 * Set the player's weapon.
+	 * @param weapon
+	 */
+	public void setWeapon(Gun weapon) {
+		this.weapon = weapon;
+		this.weapon.setWelder(this);
+	}
 
 	/**
 	 * Update the key binds according to the game settings.

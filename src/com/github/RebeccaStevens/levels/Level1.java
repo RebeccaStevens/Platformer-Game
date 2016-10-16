@@ -66,7 +66,7 @@ public class Level1 extends Level2D {
 	public void preUpdate(float delta) {
 		App app = App.getApplet();
 		crosshair.setLocationOnScreen(app.mouseX, app.mouseY);
-		player.setCrossHairLocation(crosshair.getLocation());
+		player.getWeapon().setCrossHairLocation(crosshair.getLocation());
 	}
 
 	@Override
