@@ -1,6 +1,7 @@
 package com.github.RebeccaStevens.levels;
 
 import com.github.RebeccaStevens.App;
+import com.github.RebeccaStevens.entities.CrossHair;
 import com.github.RebeccaStevens.entities.Player;
 
 import gamelib.game.Level2D;
@@ -14,6 +15,7 @@ public class Level1 extends Level2D {
 	private int backgroundColor = 0xFF64B5F6;
 	
 	private Player player;
+	private CrossHair crosshair;
 	
 	private CameraFollow camera;
 
@@ -26,6 +28,7 @@ public class Level1 extends Level2D {
 		
 		this.player = new Player(this, 0, 0, 1, 2);
 		resetPlayer();
+		this.crosshair = new CrossHair(this, 5, 5);
 		
 		this.camera = new CameraFollow(this, this.player);
 		setCamera(this.camera);
@@ -61,6 +64,9 @@ public class Level1 extends Level2D {
 
 	@Override
 	public void preUpdate(float delta) {
+		App app = App.getApplet();
+		crosshair.setLocationOnScreen(app.mouseX, app.mouseY);
+		player.setCrossHairLocation(crosshair.getLocation());
 	}
 
 	@Override
@@ -77,7 +83,7 @@ public class Level1 extends Level2D {
 
 	@Override
 	public void drawOverlay(PGraphics g) {
-		
+		this.crosshair.draw(g);
 	}
 	
 	/**

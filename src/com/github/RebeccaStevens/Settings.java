@@ -19,6 +19,9 @@ public final class Settings {
 	private int keyCodePlayerMoveRun2 = 0;
 	private int keyCodePlayerMoveJump1 = PConstants.UP;
 	private int keyCodePlayerMoveJump2 = ' ';
+	
+	private int keyCodePlayerFightShoot1 = PConstants.CONTROL;
+	private int keyCodePlayerFightShoot2 = 0;
 
 	/**
 	 * Returns if the game should is being played in wide screen.
@@ -108,6 +111,20 @@ public final class Settings {
 	}
 
 	/**
+	 * @return
+	 */
+	public int getKeyCodePlayerFightShoot1() {
+		return keyCodePlayerFightShoot1;
+	}
+
+	/**
+	 * @return
+	 */
+	public int getKeyCodePlayerFightShoot2() {
+		return keyCodePlayerFightShoot2;
+	}
+
+	/**
 	 * @param keyCodePlayerMoveLeft1
 	 */
 	public void setKeyCodePlayerMoveLeft1(int keyCodePlayerMoveLeft1) {
@@ -161,5 +178,19 @@ public final class Settings {
 	 */
 	public void setKeyCodePlayerMoveJump2(int keyCodePlayerMoveJump2) {
 		this.keyCodePlayerMoveJump2 = keyCodePlayerMoveJump2;
+	}
+
+	/**
+	 * @param keyCodePlayerMoveJump1
+	 */
+	public void setKeyCodePlayerFightShoot1(int keyCodePlayerFightShoot1) {
+		this.keyCodePlayerFightShoot1 = keyCodePlayerFightShoot1;
+	}
+
+	/**
+	 * @param keyCodePlayerMoveJump2
+	 */
+	public void setKeyCodePlayerFightShoot2(int keyCodePlayerFightShoot2) {
+		this.keyCodePlayerFightShoot2 = keyCodePlayerFightShoot2;
 	}
 }

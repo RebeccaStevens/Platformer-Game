@@ -3,10 +3,12 @@ package com.github.RebeccaStevens.entities;
 import com.github.RebeccaStevens.App;
 import com.github.RebeccaStevens.Settings;
 
+import gamelib.game.Entity;
 import gamelib.game.Level;
 import gamelib.game.entities.Actor;
 import keymanager.Key;
 import processing.core.PGraphics;
+import processing.core.PVector;
 
 public class Player extends Actor {
 	
@@ -20,11 +22,18 @@ public class Player extends Actor {
 	private final Key moveRun2   = new Key();
 	private final Key moveJump1  = new Key();
 	private final Key moveJump2  = new Key();
+	
+	private final Key fightShoot1 = new Key();
+	private final Key fightShoot2 = new Key();
 
 	private float airSpeed;
 	private float walkSpeed;
 	private float runSpeed;
 	private float jumpSpeed;
+
+	private final PVector crossHairLocation;
+	
+	private long timeOfLastShot;
 
 	/**
 	 * Create the player.
@@ -37,6 +46,8 @@ public class Player extends Actor {
 	 */
 	public Player(Level level, float x, float y, float width, float height) {
 		super(level, x, y, width, height, 10);
+		
+		crossHairLocation = new PVector();
 		
 		updateKeyBindings();
 
@@ -65,6 +76,14 @@ public class Player extends Actor {
 		} else {
 			setVelocityOffsetX(this.airSpeed * dx);
 		}
+		
+		if (this.fightShoot1.isPressed() || this.fightShoot2.isPressed()) {
+			long timeStamp = App.getApplet().getGameManager().getTime().getTimeStamp();
+			if (timeOfLastShot <= timeStamp - 200) {
+				new Bullet(getLevel(), getX(), getY(), crossHairLocation, this);
+				timeOfLastShot = timeStamp;
+			}
+		}
 	}
 
 	/**
@@ -81,6 +100,8 @@ public class Player extends Actor {
 		this.moveRun2.setKeyCode(settings.getKeyCodePlayerMoveRun2());
 		this.moveJump1.setKeyCode(settings.getKeyCodePlayerMoveJump1());
 		this.moveJump2.setKeyCode(settings.getKeyCodePlayerMoveJump2());
+		this.fightShoot1.setKeyCode(settings.getKeyCodePlayerFightShoot1());
+		this.fightShoot2.setKeyCode(settings.getKeyCodePlayerFightShoot2());
 	}
 
 	@Override
@@ -88,6 +109,15 @@ public class Player extends Actor {
 		g.noStroke();
 		g.fill(fillColor);
 		g.rect(0, 0, getWidthInPixels(), getHeightInPixels());
+	}
+
+	public void setCrossHairLocation(PVector location) {
+		crossHairLocation.set(location);
+	}
+
+	@Override
+	public void onCollidesWith(Entity entityCollidedWith) {
+		
 	}
 
 }
