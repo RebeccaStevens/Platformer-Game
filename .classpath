@@ -5,6 +5,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Processing"/>
 	<classpathentry kind="lib" path="C:/Users/rebec/Documents/Processing/libraries/controlP5/library/controlP5.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/GameLib"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/KeyManager"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/InputManager"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

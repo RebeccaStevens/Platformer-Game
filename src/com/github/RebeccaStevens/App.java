@@ -3,7 +3,7 @@ package com.github.RebeccaStevens;
 import com.github.RebeccaStevens.scenes.MainMenuScene;
 
 import gamelib.GameManager;
-import keymanager.KeyManager;
+import inputmanager.InputManager;
 import processing.core.PApplet;
 
 /**
@@ -33,7 +33,7 @@ public class App extends PApplet {
 	 * The Key Manager
 	 */
 	@SuppressWarnings("unused")
-	private KeyManager keyManager;
+	private InputManager inputManager;
 
 	/**
 	 * The title of the game.
@@ -67,7 +67,7 @@ public class App extends PApplet {
 		this.surface.setTitle(this.title);
 		this.gameManager = new GameManager(this);
 		this.gameManager.setDrawFPS(true);
-		this.keyManager = new KeyManager(this);
+		this.inputManager = new InputManager(this);
 		this.mainMenuScene = new MainMenuScene();
 		this.gameManager.setActiveScene(this.mainMenuScene);
 	}

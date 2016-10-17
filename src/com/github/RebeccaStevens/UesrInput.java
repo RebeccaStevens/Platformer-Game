@@ -1,6 +1,6 @@
 package com.github.RebeccaStevens;
 
-import keymanager.InputType;
+import inputmanager.InputType;
 
 public class UesrInput {
 

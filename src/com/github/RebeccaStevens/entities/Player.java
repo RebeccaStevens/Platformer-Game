@@ -6,7 +6,7 @@ import com.github.RebeccaStevens.Settings;
 import gamelib.game.Entity;
 import gamelib.game.Level;
 import gamelib.game.entities.Actor;
-import keymanager.Input;
+import inputmanager.Input;
 import processing.core.PGraphics;
 
 public class Player extends Actor {
